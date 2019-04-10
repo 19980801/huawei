@@ -1,6 +1,5 @@
 <template>
   <main>
-    <!-- <div><img src="../../public/imgs/top.jpg" alt=""></div> -->
     <my-header></my-header>
   </main>
 </template>

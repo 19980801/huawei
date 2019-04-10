@@ -1,6 +1,6 @@
 <template>
   <header class="container-fluid">
-    <img src="imgs/top.jpg" alt="">
+    <img src="imgs/top.jpg" alt="top">
     <div class="container">
       <ul class="breadcrumb bg-transparent p-2">
         <li class="breadcrumb-item"><a href="javascript:;" class="font-style">首页</a></li>
@@ -12,21 +12,42 @@
         <li class="breadcrumb-item"><a href="javascript:;" class="font-style">Select Region</a></li>  
           <li class="breadcrumb-item dropdown pr-5">
             <a href="javascript:;" class="font-style">更多精彩
-              <span class="dropdown-toggle"></span>
+             <span class="mui-icon mui-icon-arrowdown"></span>
             </a>
-              <ul class="dropdown-menu">
-                <li><a href="javascript:;" class="dropdown-item">EUMI</a></li>
-                <li><a href="javascript:;" class="dropdown-item">应用市场</a></li>
-                <li><a href="javascript:;" class="dropdown-item">华为终端云空间</a></li>
-                <li><a href="javascript:;" class="dropdown-item">开发者联盟</a></li>
-              </ul>
+            <ul class="dropdown-menu">
+              <li><a href="javascript:;" class="dropdown-item">EUMI</a></li>
+              <li><a href="javascript:;" class="dropdown-item">应用市场</a></li>
+              <li><a href="javascript:;" class="dropdown-item">华为终端云空间</a></li>
+              <li><a href="javascript:;" class="dropdown-item">开发者联盟</a></li>
+            </ul>
           </li>
         <li class="pl-5"><a href="javascript:;" class="font-style">请登录</a></li>
         <li class="breadcrumb-item pl-2"><a href="javascript:;" class="font-style">注册</a></li>
         <li class="breadcrumb-item"><a href="javascript:;" class="font-style">我的订单</a></li>
-        <li class="breadcrumb-item"><a href="javascript:;" class="font-style">客户服务</a></li>
-        <li class="breadcrumb-item"><a href="javascript:;" class="font-style">网站导航</a></li>
-        <li class="breadcrumb-item"><a href="javascript:;" class="font-style">手机版</a></li>
+        <li class="breadcrumb-item dropdown">
+          <a href="javascript:;" class="font-style">客户服务
+          <span class="dropdown-toggle"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="javascript:;" class="dropdown-item">服务中心</a></li>
+            <li><a href="javascript:;" class="dropdown-item">联系客服</a></li>
+          </ul>
+        </li>
+        <li class="breadcrumb-item">
+          <a href="javascript:;" class="font-style">网站导航
+            <span class="dropdown-toggle"></span>
+          </a>
+        </li>
+        <li class="breadcrumb-item dropdown">
+          <a href="javascript:;" class="font-style">手机版
+           <span class="dropdown-toggle"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="javascript:;" class="dropdown-item">
+              <img src="imgs/m1.png" alt="">
+              </a></li>
+          </ul>
+        </li>
         <li class="breadcrumb-item"><a href="javascript:;" class="font-style">购物车</a></li>
       </ul>         
     </div>
@@ -35,8 +56,13 @@
 <script>
   export default {
     data(){
-      return{}
-    }
+      return{
+
+      }
+    },
+    methods: {
+    
+    },
   }
 </script>
 <style scoped>
@@ -58,31 +84,14 @@
   .dropdown:hover .dropdown-menu{
     display:block;
   }
-  .dropdown-menu {
+ .dropdown-menu{
     min-width:5rem;
     padding:0.4rem 0 0.8rem 0;
     font-size:10px;
     text-align: center;
     border-radius:0.3rem;
   }
-  
-.dropdown-menu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  z-index: 1000;
-  display: none;
-  float: left;
-  min-width: 10rem;
-  padding: 0.5rem 0;
-  margin: 0.125rem 0 0;
-  font-size: 1rem;
-  color: #212529;
-  text-align: left;
-  list-style: none;
-  background-color: #fff;
-  background-clip: padding-box;
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  border-radius: 0.25rem;
-}
+  li.pr-5 .mui-icon{
+    font-size:10px;
+  }
 </style>
