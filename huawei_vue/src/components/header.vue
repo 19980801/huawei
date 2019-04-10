@@ -1,56 +1,137 @@
 <template>
-  <header class="container-fluid">
+  <header>
     <img src="imgs/top.jpg" alt="top">
-    <div class="container">
-      <ul class="breadcrumb bg-transparent p-2">
-        <li class="breadcrumb-item"><a href="javascript:;" class="font-style">首页</a></li>
-        <li class="breadcrumb-item"><a href="javascript:;" class="font-style">华为官网</a></li>
-        <li class="breadcrumb-item"><a href="javascript:;" class="font-style">荣耀官网</a></li>
-        <li class="breadcrumb-item"><a href="javascript:;" class="font-style">花粉俱乐部</a></li>
-        <li class="breadcrumb-item"><a href="javascript:;" class="font-style">V码(优购码)</a></li>
-        <li class="breadcrumb-item"><a href="javascript:;" class="font-style">企业购</a></li>
-        <li class="breadcrumb-item"><a href="javascript:;" class="font-style">Select Region</a></li>  
-          <li class="breadcrumb-item dropdown pr-5">
-            <a href="javascript:;" class="font-style">更多精彩
-             <span class="mui-icon mui-icon-arrowdown"></span>
+    <div class="top">
+      <div class="container">
+        <ul class="breadcrumb bg-transparent p-2">
+          <li class="breadcrumb-item"><a href="javascript:;" class="font-style">首页</a></li>
+          <li class="breadcrumb-item"><a href="javascript:;" class="font-style">华为官网</a></li>
+          <li class="breadcrumb-item"><a href="javascript:;" class="font-style">荣耀官网</a></li>
+          <li class="breadcrumb-item"><a href="javascript:;" class="font-style">花粉俱乐部</a></li>
+          <li class="breadcrumb-item"><a href="javascript:;" class="font-style">V码(优购码)</a></li>
+          <li class="breadcrumb-item"><a href="javascript:;" class="font-style">企业购</a></li>
+          <li class="breadcrumb-item"><a href="javascript:;" class="font-style">Select Region</a></li>  
+            <li class="breadcrumb-item dropdown pr-5">
+              <a href="javascript:;" class="font-style">更多精彩
+              <span class="mui-icon mui-icon-arrowdown"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="javascript:;" class="dropdown-item">EUMI</a></li>
+                <li><a href="javascript:;" class="dropdown-item">应用市场</a></li>
+                <li><a href="javascript:;" class="dropdown-item">华为终端云空间</a></li>
+                <li><a href="javascript:;" class="dropdown-item">开发者联盟</a></li>
+              </ul>
+            </li>
+          <li class="pl-2"><a href="javascript:;" class="font-style">请登录</a></li>
+          <li class="breadcrumb-item pl-2"><a href="javascript:;" class="font-style">注册</a></li>
+          <li class="breadcrumb-item"><a href="javascript:;" class="font-style">我的订单</a></li>
+          <li class="breadcrumb-item dropdown">
+            <a href="javascript:;" class="font-style">客户服务
+            <span class="dropdown-toggle"></span>
             </a>
             <ul class="dropdown-menu">
-              <li><a href="javascript:;" class="dropdown-item">EUMI</a></li>
-              <li><a href="javascript:;" class="dropdown-item">应用市场</a></li>
-              <li><a href="javascript:;" class="dropdown-item">华为终端云空间</a></li>
-              <li><a href="javascript:;" class="dropdown-item">开发者联盟</a></li>
+              <li><a href="javascript:;" class="dropdown-item">服务中心</a></li>
+              <li><a href="javascript:;" class="dropdown-item">联系客服</a></li>
             </ul>
           </li>
-        <li class="pl-5"><a href="javascript:;" class="font-style">请登录</a></li>
-        <li class="breadcrumb-item pl-2"><a href="javascript:;" class="font-style">注册</a></li>
-        <li class="breadcrumb-item"><a href="javascript:;" class="font-style">我的订单</a></li>
-        <li class="breadcrumb-item dropdown">
-          <a href="javascript:;" class="font-style">客户服务
-          <span class="dropdown-toggle"></span>
-          </a>
-          <ul class="dropdown-menu">
-            <li><a href="javascript:;" class="dropdown-item">服务中心</a></li>
-            <li><a href="javascript:;" class="dropdown-item">联系客服</a></li>
-          </ul>
-        </li>
-        <li class="breadcrumb-item">
-          <a href="javascript:;" class="font-style">网站导航
+          <li class="breadcrumb-item dropdown">
+            <a href="javascript:;" class="font-style">网站导航
+              <span class="dropdown-toggle"></span>
+            </a>
+            <ul class="dropdown-menu"> 
+              <div class="d-flex">
+                <div>
+                  <li><a href="javascript:;" class="dropdown-item"><h5 class="text-dark font-weight-bold">频道</h5></a></li>
+                  <li><a href="javascript:;" class="dropdown-item">华为专区</a></li>
+                  <li><a href="javascript:;" class="dropdown-item">荣耀专区</a></li>
+                  <li><a href="javascript:;" class="dropdown-item">企业购</a></li>
+                </div>
+                <div>
+                  <li><a href="javascript:;" class="dropdown-item"><h5 class="text-dark font-weight-bold">产品</h5></a></li>
+                  <li><a href="javascript:;" class="dropdown-item">手机</a></li>
+                  <li><a href="javascript:;" class="dropdown-item">平板&电脑</a></li>
+                  <li><a href="javascript:;" class="dropdown-item">智能穿戴</a></li>
+                  <li><a href="javascript:;" class="dropdown-item">智能家居</a></li>
+                  <li><a href="javascript:;" class="dropdown-item">通用配件</a></li>
+                  <li><a href="javascript:;" class="dropdown-item">专属配件</a></li>
+                </div>
+                <div>
+                  <li><a href="javascript:;" class="dropdown-item"><h5 class="text-dark font-weight-bold">增值服务</h5></a></li>
+                  <li><a href="javascript:;" class="dropdown-item">以旧换新</a></li>
+                  <li><a href="javascript:;" class="dropdown-item">礼品包装</a></li>
+                  <li><a href="javascript:;" class="dropdown-item">补购保障</a></li>
+                  <li><a href="javascript:;" class="dropdown-item">一口价换电池</a></li>
+                </div>
+                <div>
+                  <li><a href="javascript" class="dropdown-item"><h5 class="text-dark font-weight-bold">会员</h5></a></li>
+                  <li><a href="javascript" class="dropdown-item">会员频道</a></li>
+                </div>
+              </div>
+            </ul>
+          </li>
+          <li class="breadcrumb-item dropdown">
+            <a href="javascript:;" class="font-style">手机版
             <span class="dropdown-toggle"></span>
-          </a>
-        </li>
-        <li class="breadcrumb-item dropdown">
-          <a href="javascript:;" class="font-style">手机版
-           <span class="dropdown-toggle"></span>
-          </a>
-          <ul class="dropdown-menu">
-            <li><a href="javascript:;" class="dropdown-item">
-              <img src="imgs/m1.png" alt="">
-              </a></li>
-          </ul>
-        </li>
-        <li class="breadcrumb-item"><a href="javascript:;" class="font-style">购物车</a></li>
-      </ul>         
+            </a>
+            <ul class="dropdown-menu">
+              <div class="media">
+                <li>
+                  <a href="javascript:;" class="dropdown-item">
+                    <img src="imgs/m1.png" class="img_style">
+                  </a>
+                  <div class="media-body">
+                    <h5 class="font-weight-bold">华为商城APP</h5>
+                    <p class="text-danger font-style m-0">新人专享好礼</p>
+                    <p class="text-danger font-style m-0">最高5000积分</p>
+                  </div>
+                </li>
+              </div>
+              <div class="dropdown-divider m-0"></div>
+              <div class="media">
+                <li>
+                  <a href="javascript:;" class="dropdown-item">
+                    <img src="imgs/m1.png" alt="">
+                  </a>
+                  <div class="media-body">
+                    <h5 class="font-weight-bold">华为商城公众号</h5>
+                    <p class="font-style m-0">微信扫一扫</p>
+                  </div>
+                </li>
+              </div>
+              <div class="dropdown-divider m-0"></div>
+              <div class="media">
+                <li>
+                  <a href="javascript:;" class="dropdown-item">
+                    <img src="imgs/m1.png" alt="">
+                  </a>
+                  <div class="media-body">
+                    <h5 class="font-weight-bold">华为商城微信小程序</h5>
+                  </div>
+                </li> 
+              </div>
+            </ul>
+          </li>
+          <li class="breadcrumb-item dropdown">
+            <span class="mui-icon mui-icon-extra mui-icon-extra-cart"></span>
+            <a href="javascript:;" class="font-style">购物车(0)
+              <ul class="dropdown-menu">
+                <li class="dropdown-item">
+                  <img src="imgs/cart.png" alt="">
+                </li>
+              </ul>
+            </a>
+          </li>
+        </ul>         
+      </div>
     </div>
+    <section class="container">
+      <a href="javascript:;">
+        <img src="imgs/logo.png" class="logo">
+      </a>
+      <a href="javascript:;">
+        <img src="imgs/huawei.png">
+      </a>
+    </section>
   </header> 
 </template>
 <script>
@@ -67,7 +148,7 @@
 </script>
 <style scoped>
   a{text-decoration:none;}
-  header{
+  header .top{
     background-color:#f9f9f9;
   }
   .font-style{
@@ -93,5 +174,20 @@
   }
   li.pr-5 .mui-icon{
     font-size:10px;
+  }
+  .mui-media img{
+    width:100px;
+    height:100px;
+  }
+  .img_style{
+    width:10px;
+    height:10px;
+  }
+  .mui-icon-extra{
+    font-size:12px;
+  }
+  .logo{
+    width:205px;
+    float:left;
   }
 </style>
