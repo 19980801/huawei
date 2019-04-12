@@ -90,15 +90,22 @@
          </div>
        </div>
        <div class="col-2">
-         <div>
-           <h4 class="font-weight-bold">400-088-6888</h4>
-           <span class="font-style">7x24小时客服热线</span>
-           <p href="javascript:;" class="btn btn-dark">在线客服</p>
+         <div class="foot">
+            <h4 class="font-weight-bold">400-088-6888</h4>
+            <span class="font-style">7x24小时客服热线</span>
+            <p href="javascript:;" class="btn btn-dark">
+              <span class="mui-icon-extra mui-icon-extra-custom"></span>
+              <span>在线客服</span>
+            </p>
+           <p>关注Vmall</p>
+           <span class="mui-icon mui-icon-weixin"></span>
+           <span class="iconfont icon-toutiao"></span>
+           <span class="mui-icon mui-icon-weibo"></span>
+           <span class="iconfont icon-huawei"></span>
          </div>
        </div>
      </div>
-    </div>
-
+    </div>  
   </footer>
 </template>
 <script>
@@ -121,5 +128,10 @@ export default {
   .mui-icon{
     font-size:14px;
   }
-
+  .foot span{
+    padding:4px;
+  }
+  div.row div.col-2 a:hover{
+    color:#CF0A2C;
+  }
 </style>

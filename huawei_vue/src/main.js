@@ -8,7 +8,8 @@ import axios from 'axios'
 import './lib/mui/css/mui.css'
 // 还需要加载图标字体文件
 import './lib/mui/css/icons-extra.css'
-
+// 引入iconfont图标
+import './assets/iconfont/iconfont.css'
 Vue.config.productionTip = false
 //让axios的请求携带验证信息到服务端
 axios.defaults.withCredentials=true;
