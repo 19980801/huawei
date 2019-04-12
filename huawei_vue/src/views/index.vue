@@ -1,6 +1,7 @@
 <template>
   <main>
     <my-header></my-header>
+    <my-footer></my-footer>
   </main>
 </template>
 <script>

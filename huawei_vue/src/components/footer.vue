@@ -1,64 +1,104 @@
 <template>
   <footer>
-    <div class="row">
-      <div class="col-md-4">
-        <p>
-          <img src="img/footer/logo.png">
-        </p>
-        <p>
-          <img src="img/footer/footerFont.png">
-        </p>
+    <div class="container">
+      <div class="navbar-expand p-4 border-bottom">  
+        <ul class="navbar-nav">
+          <li class="nav-item col-3 d-flex">
+            <img src="http://127.0.0.1:3000/imgs/foot1.png">
+            <h4>百强企业 品质保障</h4>
+          </li>
+          <li class="nav-item col-3 d-flex">
+            <img src="http://127.0.0.1:3000/imgs/foot2.png">
+            <h4>百强企业 品质保障</h4>
+          </li>
+          <li class="nav-item col-3 d-flex">
+            <img src="http://127.0.0.1:3000/imgs/foot3.png">
+            <h4>百强企业 品质保障</h4>
+          </li>
+          <li class="nav-item col-3 d-flex">
+            <img src="http://127.0.0.1:3000/imgs/foot4.png">
+            <h4>百强企业 品质保障</h4>
+          </li> 
+        </ul>
       </div>
-      <div class="col-md-4">
-        <div class="row">
-          <div class="col-4 col-md">
-            <h6>买家帮助</h6>
-            <ul class="list-unstyled text-small">
-              <li><a class="text-muted small" href="#">新手指南</a></li>
-              <li><a class="text-muted small" href="#">服务保障</a></li>
-              <li><a class="text-muted small" href="#">常见问题</a></li>
-            </ul>
-          </div>
-          <div class="col-4 col-md">
-            <h6>商家帮助</h6>
-            <ul class="list-unstyled text-small">
-              <li><a class="text-muted small" href="#">商家入驻</a></li>
-              <li><a class="text-muted small" href="#">商家后台</a></li>
-            </ul>
-          </div>
-          <div class="col-4 col-md">
-            <h6>关于我们</h6>
-            <ul class="list-unstyled text-small">
-              <li><a class="text-muted small" href="#">关于阿甲</a></li>
-              <li><a class="text-muted small" href="#">联系我们</a></li>
-              <li><a class="text-muted" href="#">
-                <img src="img/footer/wechat.png">
-                <img src="img/footer/sinablog.png">
-              </a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="row">
-          <div class="col-6 col-md pl-5 pr-0">
-            <h6>阿甲商城客户端</h6>
-            <p>
-              <img src="img/footer/ios.png">
-            </p>
-            <p>
-              <img src="img/footer/android.png">
-            </p>
-          </div>
-          <div class="col-6 col-md pl-4 pr-0">
-            <img src="img/footer/erweima.png">
-          </div>
-        </div>
-      </div>
+     <div class="row mt-4">
+       <div class="col-10 border-right">
+         <div class="row">
+           <div class="col-2">
+             <ul class="list-unstyled">
+               <li><h5 class="font-weight-bold text-dark mb-2">购物相关</h5></li>
+               <li><a class="font-style">购物指南</a></li>
+               <li><a class="font-style">配送方式</a></li>
+               <li><a class="font-style">支付方式</a></li>
+               <li><a class="font-style">常见问题</a></li> 
+             </ul>
+           </div>
+           <div class="col-2">
+             <ul class="list-unstyled">
+               <li><h5 class="font-weight-bold text-dark mb-2">保修与退换货</h5></li>
+               <li><a class="font-style">退换货政策</a></li>
+               <li><a class="font-style">退换货流程</a></li>
+               <li><a class="font-style">保修状态查询</a></li>
+               <li><a class="font-style">保修政策</a></li>
+             </ul>
+           </div>
+           <div class="col-2">
+             <ul class="list-unstyled">
+               <li><h5 class="font-weight-bold text-dark mb-2">维修与技术支持</h5></li>
+               <li><a class="font-style">售后网点</a></li>
+               <li><a class="font-style">预约维修</a></li>
+               <li><a class="font-style">手机寄修</a></li>
+               <li><a class="font-style">备件价格查询</a></li>
+               <li><a class="font-style">上门服务</a></li>
+             </ul>
+           </div>
+           <div class="col-2">
+             <ul class="list-unstyled">
+               <li><h5 class="font-weight-bold text-dark mb-2">特色服务</h5></li>
+               <li><a class="font-style">防伪查询</a></li>
+               <li><a class="font-style">补购保障</a></li>
+               <li><a class="font-style">以旧换新</a></li>
+               <li><a class="font-style">礼品包装</a></li>
+             </ul>
+           </div>
+           <div class="col-2">
+             <ul class="list-unstyled">
+               <li><h5 class="font-weight-bold text-dark mb-2">关于我们</h5></li>
+               <li><a class="font-style">公司介绍</a></li>
+               <li><a class="font-style">华为商城介绍</a></li>
+               <li><a class="font-style">华为线下门店</a></li>
+               <li><a class="font-style">荣耀线下门店</a></li>
+               <li><a class="font-style">诚招英才</a></li>
+               <li><a class="font-style">意见反馈</a></li>
+             </ul>
+           </div>
+           <div class="col-2">
+             <ul class="list-unstyled">
+               <li><h5 class="font-weight-bold text-dark mb-2">友情链接
+                 <span class="mui-icon mui-icon-back"></span>
+                 <span class="mui-icon mui-icon-forward"></span>  
+               </h5>
+               </li>
+               <li><a class="font-style">公司介绍</a></li>
+               <li><a class="font-style">华为商城介绍</a></li>
+               <li><a class="font-style">华为线下门店</a></li>
+               <li><a class="font-style">荣耀线下门店</a></li>
+               <li><a class="font-style">诚招英才</a></li>
+               <li><a class="font-style">意见反馈</a></li>
+             </ul>
+           </div>
+         </div>
+       </div>
+       <div class="col-2">
+         <div>
+           <h4 class="font-weight-bold">400-088-6888</h4>
+           <span class="font-style">7x24小时客服热线</span>
+           <p href="javascript:;" class="btn btn-dark">在线客服</p>
+         </div>
+       </div>
+     </div>
     </div>
-    <nav class="navbar navbar-light justify-content-center text-muted small">
-      &copy;阿甲集团有限公司 版权所有 京ICP证09002163号
-    </nav>
+
   </footer>
 </template>
 <script>
@@ -72,7 +112,14 @@ export default {
 </script>
 
 <style scoped>
-  #footer{
-    width:100%; padding:0; margin:0;
+  footer{
+    background:#f9f9f9;
   }
+  .font-style{
+    font-size:12px;
+  }
+  .mui-icon{
+    font-size:14px;
+  }
+
 </style>

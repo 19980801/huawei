@@ -1,6 +1,9 @@
 <template>
   <header>
-    <img src="imgs/top.jpg" alt="top">
+    <div v-show="show">
+      <img src="http://127.0.0.1:3000/imgs/top.jpg" alt="top" class="img_top">
+      <img src="http://127.0.0.1:3000/imgs/close.png" class="close" @click="close">
+    </div>
     <div class="top">
       <div class="container">
         <ul class="breadcrumb bg-transparent p-2">
@@ -38,8 +41,14 @@
             <a href="javascript:;" class="font-style">网站导航
               <span class="dropdown-toggle"></span>
             </a>
-            <ul class="dropdown-menu"> 
+            <ul class="dropdown-menu">
               <div class="d-flex">
+                <li class="home_bg mt-5 ml-3">
+                  <a href="javascript:;">
+                    <img src="http://127.0.0.1:3000/imgs/home.png" class="mt-2">
+                  </a>
+                  <h6 class="mt-3">商城首页</h6>
+                </li>
                 <div>
                   <li><a href="javascript:;" class="dropdown-item"><h5 class="text-dark font-weight-bold">频道</h5></a></li>
                   <li><a href="javascript:;" class="dropdown-item">华为专区</a></li>
@@ -77,7 +86,7 @@
               <div class="media">
                 <li>
                   <a href="javascript:;" class="dropdown-item">
-                    <img src="imgs/m1.png" class="img_style">
+                    <img src="http://127.0.0.1:3000/imgs/m1.png">
                   </a>
                   <div class="media-body">
                     <h5 class="font-weight-bold">华为商城APP</h5>
@@ -90,7 +99,7 @@
               <div class="media">
                 <li>
                   <a href="javascript:;" class="dropdown-item">
-                    <img src="imgs/m1.png" alt="">
+                    <img src="http://127.0.0.1:3000/imgs/m1.png">
                   </a>
                   <div class="media-body">
                     <h5 class="font-weight-bold">华为商城公众号</h5>
@@ -102,7 +111,7 @@
               <div class="media">
                 <li>
                   <a href="javascript:;" class="dropdown-item">
-                    <img src="imgs/m1.png" alt="">
+                    <img src="http://127.0.0.1:3000/imgs/m1.png">
                   </a>
                   <div class="media-body">
                     <h5 class="font-weight-bold">华为商城微信小程序</h5>
@@ -116,21 +125,49 @@
             <a href="javascript:;" class="font-style">购物车(0)
               <ul class="dropdown-menu">
                 <li class="dropdown-item">
-                  <img src="imgs/cart.png" alt="">
+                  <a href="javascript:;">
+                    <img src="http://127.0.0.1:3000/imgs/cart.png">
+                  </a>
                 </li>
+                <p>您的购物车是空的，赶紧选购吧~</p>
               </ul>
             </a>
           </li>
         </ul>         
       </div>
     </div>
-    <section class="container">
-      <a href="javascript:;">
-        <img src="imgs/logo.png" class="logo">
-      </a>
-      <a href="javascript:;">
-        <img src="imgs/huawei.png">
-      </a>
+    <section class="container p-2 d-flex">
+      <div class="logo">
+        <a href="javascript:;">
+          <img src="http://127.0.0.1:3000/imgs/logo.png" class="img_logo">
+        </a> 
+      </div>
+      <div class="navbar navbar-expand">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a href="javascript:;" class="nav-link"><img src="http://127.0.0.1:3000/imgs/huawei.png"></a>
+          </li>
+          <li class="nav-item">
+            <a href="javascript:;" class="nav-link"><img src="http://127.0.0.1:3000/imgs/hovor.png"></a>
+          </li>
+          <li class="nav-item">
+            <a href="javascript:;" class="nav-link"><span>Mate20系列</span></a>
+          </li>  
+          <li class="nav-item">
+            <a href="javascript:;" class="nav-link"><span>荣耀10</span></a>
+          </li>  
+          <li class="nav-item">
+            <a href="javascript:;" class="nav-link"><span>华为P30</span></a>
+          </li>
+          <li class="nav-item">
+            <a href="javascript:;" class="nav-link"><span>荣耀V20</span></a>
+          </li>          
+        </ul>
+      </div>
+      <div class="right ml-5">
+        <input type="text" class="search" v-model="kwords"> 
+        <span class="mui-icon mui-icon-search" @click="search"></span>
+      </div>
     </section>
   </header> 
 </template>
@@ -138,18 +175,40 @@
   export default {
     data(){
       return{
-
+        show:true,
+        kwords:"",
       }
     },
-    methods: {
-    
+    methods:{
+      close(){
+        this.show=false;
+      },
+      search(){
+        console.log(this.kwords);
+      }
+    },
+    watch: {
+      kwords(){
+        this.search();
+      }
     },
   }
 </script>
 <style scoped>
-  a{text-decoration:none;}
+  a{
+    text-decoration:none;
+    color:#333;  
+  }
+  header{
+    background:#fff; 
+  }
   header .top{
     background-color:#f9f9f9;
+  }
+  header .close{
+    position: relative;
+    top:-75px;
+    right:340px;
   }
   .font-style{
     font-size:12px;
@@ -186,8 +245,36 @@
   .mui-icon-extra{
     font-size:12px;
   }
-  .logo{
+  .img_logo{
     width:205px;
     float:left;
+    margin-top:8px;
+  }
+  .home_bg{
+    background:#f9f9f9;
+    width:50px;
+    height:50px;
+    border-radius:50%;
+  }
+  div.navbar ul img{
+    width:75px;
+  }
+  div.right{
+    position:relative;
+  }
+  div.right .search{
+    outline:none;
+    border:0;
+    border-radius:16px;
+    height:30px;
+    margin-top:15px;
+    background:#f0f0f0;
+    text-indent:15px;
+    line-height:30px;
+  }
+  div.right span{
+    position:absolute;
+    top:18px;
+    right:10px;
   }
 </style>
