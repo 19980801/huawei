@@ -10,6 +10,11 @@ import './lib/mui/css/mui.css'
 import './lib/mui/css/icons-extra.css'
 // 引入iconfont图标
 import './assets/iconfont/iconfont.css'
+
+import 'mint-ui/lib/style.css'
+// 
+import MintUI from "mint-ui";
+Vue.use(MintUI);
 Vue.config.productionTip = false
 //让axios的请求携带验证信息到服务端
 axios.defaults.withCredentials=true;
