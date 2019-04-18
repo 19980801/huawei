@@ -7,6 +7,8 @@ import NotFound from './views/notFound'
 import Products from './views/products'
 import Tab from './views/tab'
 import Tab1 from './views/tab.1'
+import Text from './views/text.vue'
+import Scroll from './views/scroll.vue'
 
 Vue.use(Router)
 
@@ -18,7 +20,8 @@ export default new Router({
     {path:"/products/:kwords",component:Products,props:true},
     {path:"/login",component:Login},
     {path:"/tab",component:Tab},
-    {path:"/tab1",component:Tab1},
-    {path:"*", component:NotFound},
+    {path:"/tab1",component:Tab1}, 
+    {path:"/text",component:Text}, 
+    {path:"/scroll",component:Scroll}, 
   ]
 })
