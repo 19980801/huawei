@@ -29,14 +29,22 @@ server.use(express.static("public"));
 server.get("/bannerlist",(req,res)=>{
   // 创建数据发送给客户端
   var rows=[
-    {id:1,img_url:"http://127.0.0.1:3000/imgs/banner1.jpg"},
-    {id:2,img_url:"http://127.0.0.1:3000/imgs/banner2.jpg"},
-    {id:3,img_url:"http://127.0.0.1:3000/imgs/banner3.jpg"},
-    {id:4,img_url:"http://127.0.0.1:3000/imgs/banner4.jpg"},
-    {id:5,img_url:"http://127.0.0.1:3000/imgs/banner5.jpg"},
-    {id:6,img_url:"http://127.0.0.1:3000/imgs/banner6.jpg"},
-    {id:7,img_url:"http://127.0.0.1:3000/imgs/banner7.jpg"},
-    {id:8,img_url:"http://127.0.0.1:3000/imgs/banner8.jpg"},
+    {id:1,img_url:"http://127.0.0.1:3000/imgs/banner1.jpg",a_href:"javascript:;"},
+    {id:2,img_url:"http://127.0.0.1:3000/imgs/banner2.jpg",a_href:"javascript:;"},
+    {id:3,img_url:"http://127.0.0.1:3000/imgs/banner3.jpg",a_href:"javascript:;"},
+    {id:4,img_url:"http://127.0.0.1:3000/imgs/banner4.jpg",a_href:"javascript:;"},
+    {id:5,img_url:"http://127.0.0.1:3000/imgs/banner5.jpg",a_href:"javascript:;"},
+    {id:6,img_url:"http://127.0.0.1:3000/imgs/banner6.jpg",a_href:"javascript:;"},
+    {id:7,img_url:"http://127.0.0.1:3000/imgs/banner7.jpg",a_href:"javascript:;"},
+    {id:8,img_url:"http://127.0.0.1:3000/imgs/banner8.jpg",a_href:"javascript:;"},
+    {id:9,img_url:"http://127.0.0.1:3000/imgs/banner9.jpg",a_href:"javascript:;"},
+    {id:10,img_url:"http://127.0.0.1:3000/imgs/banner10.jpg",a_href:"javascript:;"},
+    {id:11,img_url:"http://127.0.0.1:3000/imgs/banner11.jpg",a_href:"javascript:;"},
+    {id:12,img_url:"http://127.0.0.1:3000/imgs/banner12.jpg",a_href:"javascript:;"},
+    {id:13,img_url:"http://127.0.0.1:3000/imgs/banner13.jpg",a_href:"javascript:;"},
+    {id:14,img_url:"http://127.0.0.1:3000/imgs/banner14.jpg",a_href:"javascript:;"},
+    {id:15,img_url:"http://127.0.0.1:3000/imgs/banner15.jpg",a_href:"javascript:;"},
+    {id:16,img_url:"http://127.0.0.1:3000/imgs/banner16.jpg",a_href:"javascript:;"},
   ];
   res.send({code:1,data:rows});
 });

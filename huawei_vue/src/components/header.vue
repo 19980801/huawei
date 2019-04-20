@@ -201,6 +201,8 @@
   }
   header{
     background:#fff; 
+    width:1920px;
+    margin:0 auto;
   }
   header .top{
     background-color:#f9f9f9;

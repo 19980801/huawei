@@ -3,12 +3,7 @@ import Router from 'vue-router'
 import Index from './views/index'
 import Details from './views/details'
 import Login from './views/login'
-import NotFound from './views/notFound'
 import Products from './views/products'
-import Tab from './views/tab'
-import Tab1 from './views/tab.1'
-import Text from './views/text.vue'
-import Scroll from './views/scroll.vue'
 
 Vue.use(Router)
 
@@ -19,9 +14,5 @@ export default new Router({
     {path:"/details/:lid", component:Details, props:true},
     {path:"/products/:kwords",component:Products,props:true},
     {path:"/login",component:Login},
-    {path:"/tab",component:Tab},
-    {path:"/tab1",component:Tab1}, 
-    {path:"/text",component:Text}, 
-    {path:"/scroll",component:Scroll}, 
   ]
 })

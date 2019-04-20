@@ -2,11 +2,13 @@
   <div class="app-index">
     <my-header></my-header>
     <div>
-    <mt-swipe :auto="1000" id="banner">
-      <mt-swipe-item v-for="item of list" :key="item.id">
-        <img :src="item.img_url" class="banner">
-      </mt-swipe-item>
-    </mt-swipe>
+    <div class="top-banner">
+      <mt-swipe :auto="1000">
+        <mt-swipe-item v-for="item of list" :key="item.id">
+          <a :href="item.a_href"><img :src="item.img_url" class="banner"></a>
+        </mt-swipe-item>
+      </mt-swipe>
+    </div>
    <div class="container">
     <div id="tab"  @mouseleave="tabHide()">
       <div class="tabNav">
@@ -123,18 +125,19 @@
       <div class="col-3 pl-1 pr-1"><img src="http://127.0.0.1:3000/imgs/nav3.jpg"></div>    
       <div class="col-3 pl-1 pr-0"><img src="http://127.0.0.1:3000/imgs/nav4.jpg"></div>    
     </div>
+    <!-- 一层 -->
     <div class="mt-5">
       <h3 class="text-left">热销单品</h3>
       <div class="d-flex mt-3">
         <img src="http://127.0.0.1:3000/imgs/c1.jpg" class="round">
-        <div class="floor1">
+        <div class="floor1 floor">
           <ul class="list-unstyled">
             <li v-for="item of floor1" :key="item.i">
               <a :href="item.a_href">
                 <img :src="item.img_url" class="mt-4 mb-2">
                 <h6 class="text-dark">{{item.title}}</h6>
                 <p class="mb-2 text-secondary">{{item.content}}</p>
-                <p class="mb-2 text-danger">￥{{item.price}}</p>               
+                <p class="text-danger">￥{{item.price}}</p>               
               </a>
             </li>
           </ul>
@@ -144,11 +147,11 @@
     <div class="mt-5">
       <h3 class="text-left">精品推荐</h3>
       <div class="scroll d-flex mt-3">
-        <div class="prev" @click="prev">
+        <div class="prev" @click="next" :class="prevDisabled?'btn-disabled':''">
           <span class="mui-icon mui-icon-back mt-4"></span>
         </div>
-        <ul class="list-unstyled">
-          <li v-for="item of scroll1" :key="item.i" class="mr-2">
+        <ul class="list-unstyled  d-flex" :style="ulScrollStyle">
+          <li v-for="item of scroll1" :key="item.i">
             <a :href="item.a_href">
               <div class="list-top">
                 <i class="p-0"><img :src="item.img_url" class="mt-4"></i>
@@ -161,10 +164,399 @@
             </a>
           </li>
         </ul>
-        <div class="next" @click="next">
+        <div class="next" @click="prev" :class="nextDisabled?'btn-disabled':''">
           <span class="mui-icon mui-icon-forward mt-4"></span>
         </div>
       </div>
+    </div>
+    <div class="banner1">
+      <mt-swipe :auto="4000">
+        <mt-swipe-item v-for="item of list1" :key="item.id">
+          <a :href="item.a_href"><img :src="item.img_url"></a>
+        </mt-swipe-item>
+      </mt-swipe>
+    </div>
+    <!-- 二层 -->
+    <div class="mt-5">
+      <div class="d-flex">
+        <h3 class="text-left col-1">手机</h3>
+        <ul class="nav col-9">
+          <li class="nav-item">
+            <a href="javascript:;" class="nav-link font-style">HUAWEI Mate系列</a>
+          </li>
+          <li class="nav-item">
+            <a href="javascript:;" class="nav-link font-style">荣耀</a>
+          </li>
+          <li class="nav-item">
+            <a href="javascript:;" class="nav-link font-style">HUAWEI P系列</a>
+          </li>
+          <li class="nav-item">
+            <a href="javascript:;" class="nav-link font-style">荣耀畅玩系列</a>
+          </li>
+          <li class="nav-item">
+            <a href="javascript:;" class="nav-link font-style">HUAWEI nova系列</a>
+          </li>
+          <li class="nav-item">
+          <a href="javascript:;" class="nav-link font-style">华为畅享系列</a>
+          </li>
+          <li class="nav-item">
+            <a href="javascript:;" class="nav-link font-style">HUAWEI 麦芒系列</a>
+          </li>
+          <li class="nav-item">
+          <a href="javascript:;" class="nav-link font-style">移动4G+专区</a>
+          </li>
+        </ul>
+        <div class="col-2"><a href="javascript:;" class="text-right">查看更多
+          <span class="mui-icon mui-icon-forward"></span>
+        </a>
+        </div>
+      </div>
+      <div class="mt-3 d-flex">
+        <div class="floor">
+          <ul class="list-unstyled d-flex"> 
+            <li class="f1-img">
+              <img src="http://127.0.0.1:3000/imgs/f2.1.jpg">
+            </li>
+            <li v-for="item of floor2" :key="item.i">
+              <a :href="item.a_href">
+                <img :src="item.img_url" class="mt-4 mb-2">
+                <h6 class="text-dark">{{item.title}}</h6>
+                <p class="mb-2 text-secondary">{{item.content}}</p>
+                <p class="mb-2 text-danger">￥{{item.price}}</p>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- 三层 -->
+    <div class="mt-5">
+      <div class="d-flex">
+        <h3 class="text-left col-2">笔记本电脑</h3>
+        <ul class="nav ml-4 col-8">
+          <li class="nav-item">
+            <a href="javascript:;" class="nav-link font-style">平板电脑</a>
+          </li>
+          <li class="nav-item">
+            <a href="javascript:;" class="nav-link font-style">笔记本电脑</a>
+          </li>
+          <li class="nav-item">
+            <a href="javascript:;" class="nav-link font-style">笔记本配件</a>
+          </li>
+        </ul>
+        <div col-2>
+          <a href="javascript:;">查看更多
+            <span class="mui-icon mui-icon-forward"></span>
+          </a>
+        </div>
+      </div>
+      <div class="mt-3 d-flex">
+        <div class="floor">
+          <ul class="list-unstyled d-flex">
+            <li class="f1-img">
+              <img src="http://127.0.0.1:3000/imgs/f3.1.jpg">
+            </li>
+            <li v-for="item of floor3" :key="item.i">
+              <a :href="item.a_href">
+                <img :src="item.img_url" class="mt-4 mb-2">
+                <h6 class="text-dark">{{item.title}}</h6>
+                <p class="mb-2 text-secondary">{{item.content}}</p>
+                <p class="text-danger">￥{{item.price}}</p>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- 四层 -->
+    <div class="mt-5">
+      <div class="d-flex justify-content-between">
+        <h3 class="text-left col-2">精品平板</h3>
+        <ul class="nav col-8">
+          <li class="nav-item"><a href="javascript:;" class="nav-link font-style">平板电脑</a></li>
+          <li class="nav-item"><a href="javascript:;" class="nav-link font-style">笔记本电脑</a></li>
+          <li class="nav-item"><a href="javascript:;" class="nav-link font-style">笔记本配件</a></li>
+        </ul>
+        <div class="float-right col-2">
+          <a href="javascript:;">查看更多
+            <span class="mui-icon mui-icon-forward"></span>
+          </a>
+        </div>
+      </div>
+      <div class="mt-3">
+        <div class="floor">
+          <ul class="list-unstyled d-flex">
+            <li class="f1-img">
+              <img src="http://127.0.0.1:3000/imgs/f4.1.jpg">
+            </li>
+            <li v-for="item of floor4" :key="item.i">
+              <a :href="item.a_href">
+                <img :src="item.img_url" class="mt-4 mb-2">
+                <h6 class="text-dark">{{item.title}}</h6>
+                <p class="mb-2 text-secondary">{{item.content}}</p>
+                <p class="text-danger">￥{{item.price}}</p>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- 五层 -->
+    <div class="mt-5">
+      <div class="d-flex">
+        <h3 class="text-left col-2">智能穿戴</h3>
+        <ul class="nav col-8">
+          <li class="nav-item"><a href="javascript:;" class="nav-link font-style">手环</a></li>
+          <li class="nav-item"><a href="javascript:;" class="nav-link font-style">手表</a></li>
+          <li class="nav-item"><a href="javascript:;" class="nav-link font-style">VR</a></li>
+        </ul>
+        <div col-2>
+          <a href="javascript:;">加载更多
+           <span class="mui-icon mui-icon-forward"></span>
+          </a>
+        </div>
+      </div>
+      <div class="mt-3 d-flex">
+        <div class="floor">
+          <ul class="list-unstyled d-flex">
+            <li class="f2-img">
+              <img src="http://127.0.0.1:3000/imgs/f5.1.jpg">
+            </li>
+            <li v-for="item of floor5" :key="item.i">
+              <a :href="item.a_href">
+                <img :src="item.img_url" class="mt-4 mb-2">
+                <h6 class="text-dark">{{item.title}}</h6>
+                <p class="mb-2 text-secondary">{{item.content}}</p>
+                <p class="text-danger">￥{{item.price}}</p>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="scroll1 d-flex mt-3">
+      <div class="prev" @click="next" :class="prevDisabled?'btn-disabled':''">
+        <span class="mui-icon mui-icon-back mt-4"></span>
+      </div>
+      <ul class="list-unstyled  d-flex" :style="ulScrollStyle">
+        <li v-for="item of scroll2" :key="item.i">
+          <a :href="item.a_href">
+            <div class="list-top">
+              <i class="p-0"><img :src="item.img_url" class="mt-4"></i>
+              <p class="p-2">{{item.content}}</p>
+            </div>
+            <div class="list-bottom">
+              <p class="text-dark m-0 mt-2">{{item.title}}</p>
+              <p class="text-danger">￥{{item.price}}</p>
+            </div>
+          </a>
+        </li>
+      </ul>
+      <div class="next" @click="prev" :class="nextDisabled?'btn-disabled':''">
+        <span class="mui-icon mui-icon-forward mt-4"></span>
+      </div>
+    </div>
+    <!-- 六层 -->
+    <div class="mt-5">
+      <div class="d-flex">
+        <h3 class="text-left">智能家居</h3>
+        <ul class="nav ml-2">
+          <li class="nav-item"><a href="javascript:;" class="nav-link font-style">路由器</a></li>
+          <li class="nav-item"><a href="javascript:;" class="nav-link font-style">子母/分布式路由</a></li>
+          <li class="nav-item"><a href="javascript:;" class="nav-link font-style">电力猫/wife放大器</a></li>
+          <li class="nav-item"><a href="javascript:;" class="nav-link font-style">随性wife</a></li>
+          <li class="nav-item"><a href="javascript:;" class="nav-link font-style">电视</a></li>
+          <li class="nav-item"><a href="javascript:;" class="nav-link font-style">照明</a></li>
+          <li class="nav-item"><a href="javascript:;" class="nav-link font-style">清洁</a></li>
+          <li class="nav-item"><a href="javascript:;" class="nav-link font-style">节能</a></li>
+          <li class="nav-item"><a href="javascript:;" class="nav-link font-style">环境</a></li>
+          <li class="nav-item"><a href="javascript:;" class="nav-link font-style">安防</a></li>
+          <li class="nav-item"><a href="javascript:;" class="nav-link font-style">健康</a></li>
+          <li class="nav-item"><a href="javascript:;" class="nav-link font-style">厨电</a></li>
+          <li class="nav-item"><a href="javascript:;" class="nav-link font-style">影音</a></li>
+          <li class="nav-item"><a href="javascript:;" class="nav-link font-style">卫浴</a></li>
+        </ul>
+        <div class="float-right ml-2">
+          <a href="javascript:;">查看更多
+            <span class="mui-icon mui-icon-forward"></span>
+          </a>
+        </div>
+      </div>
+      <div class="mt-3 d-flex">
+        <div class="floor">
+          <ul class="list-unstyled d-flex">
+            <li class="f2-img">
+              <img src="http://127.0.0.1:3000/imgs/f5.1.jpg">
+            </li>
+            <li v-for="item of floor6" :key="item.i">
+              <a :href="item.a_href">
+                <img :src="item.img_url" class="mt-4 mb-2">
+                <h6 class="text-dark">{{item.title}}</h6>
+                <p class="mb-2 text-secondary">{{item.content}}</p>
+                <p class="text-danger">￥{{item.price}}</p>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    <div class="scroll1 d-flex mt-3">
+      <div class="prev" @click="next" :class="prevDisabled?'btn-disabled':''">
+        <span class="mui-icon mui-icon-back mt-4"></span>
+      </div>
+      <ul class="list-unstyled  d-flex" :style="ulScrollStyle">
+        <li v-for="item of scroll3" :key="item.i">
+          <a :href="item.a_href">
+            <div class="list-top">
+              <i class="p-0"><img :src="item.img_url" class="mt-4"></i>
+              <p class="p-2">{{item.content}}</p>
+            </div>
+            <div class="list-bottom">
+              <p class="text-dark m-0 mt-2">{{item.title}}</p>
+              <p class="text-danger">￥{{item.price}}</p>
+            </div>
+          </a>
+        </li>
+      </ul>
+      <div class="next" @click="prev" :class="nextDisabled?'btn-disabled':''">
+        <span class="mui-icon mui-icon-forward mt-4"></span>
+      </div>
+    </div>
+    </div>
+    <div class="mt-4">
+      <img src="http://127.0.0.1:3000/imgs/banner17.jpg" class="rounded">
+    </div>
+    <!-- 七层 -->
+    <div class="mt-5">
+      <div class="d-flex">
+        <h3 class="text-left">热销配件</h3>
+        <ul class="nav ml-2">
+          <li class="nav-item"><a href="javascript:;" class="nav-link font-style">保护壳</a></li>
+          <li class="nav-item"><a href="javascript:;" class="nav-link font-style">保护套</a></li>
+          <li class="nav-item"><a href="javascript:;" class="nav-link font-style">贴膜</a></li>
+          <li class="nav-item"><a href="javascript:;" class="nav-link font-style">移动电源</a></li>
+          <li class="nav-item"><a href="javascript:;" class="nav-link font-style">耳机</a></li>
+          <li class="nav-item"><a href="javascript:;" class="nav-link font-style">充电线/线材</a></li>
+          <li class="nav-item"><a href="javascript:;" class="nav-link font-style">自拍杆/支架</a></li>
+          <li class="nav-item"><a href="javascript:;" class="nav-link font-style">音响</a></li>
+          <li class="nav-item"><a href="javascript:;" class="nav-link font-style">U盘/存储卡</a></li>
+          <li class="nav-item"><a href="javascript:;" class="nav-link font-style">摄像机/镜头</a></li>
+          <li class="nav-item"><a href="javascript:;" class="nav-link font-style">智能硬件</a></li>
+          <li class="nav-item"><a href="javascript:;" class="nav-link font-style">表带</a></li>
+        </ul>
+        <div class="float-right ml-4">
+          <a href="javascript:;">查看更多
+            <span class="mui-icon mui-icon-forward"></span>
+          </a>
+        </div>
+      </div>
+      <div class="mt-3 d-flex">
+        <div class="floor">
+          <ul class="list-unstyled d-flex">
+            <li class="f2-img">
+              <img src="http://127.0.0.1:3000/imgs/f7.1.jpg">
+            </li>
+            <li v-for="item of floor7" :key="item.i">
+              <a :href="item.a_href">
+                <img :src="item.img_url" class="mt-4 mb-2">
+                <h6 class="text-dark">{{item.title}}</h6>
+                <p class="mb-2 text-secondary">{{item.content}}</p>
+                <p class="text-danger">￥{{item.price}}</p>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>  
+    </div>
+    <div class="scroll1 d-flex mt-3">
+      <div class="prev" @click="next" :class="prevDisabled?'btn-disabled':''">
+        <span class="mui-icon mui-icon-back mt-4"></span>
+      </div>
+      <ul class="list-unstyled  d-flex" :style="ulScrollStyle">
+        <li v-for="item of scroll4" :key="item.i">
+          <a :href="item.a_href">
+            <div class="list-top">
+              <i class="p-0"><img :src="item.img_url" class="mt-4"></i>
+              <p class="p-2">{{item.content}}</p>
+            </div>
+            <div class="list-bottom">
+              <p class="text-dark m-0 mt-2">{{item.title}}</p>
+              <p class="text-danger">￥{{item.price}}</p>
+            </div>
+          </a>
+        </li>
+      </ul>
+      <div class="next" @click="prev" :class="nextDisabled?'btn-disabled':''">
+        <span class="mui-icon mui-icon-forward mt-4"></span>
+      </div>
+    </div>
+    <!-- 八层 -->
+    <div class="mt-5">
+      <div class="d-flex">
+        <h3 class="text-left">品牌配件</h3>
+        <ul class="nav ml-2">
+          <li class="nav-item"><a href="javascript:;" class="nav-link font-style">保护壳</a></li>
+          <li class="nav-item"><a href="javascript:;" class="nav-link font-style">保护套</a></li>
+          <li class="nav-item"><a href="javascript:;" class="nav-link font-style">贴膜</a></li>
+          <li class="nav-item"><a href="javascript:;" class="nav-link font-style">移动电源</a></li>
+          <li class="nav-item"><a href="javascript:;" class="nav-link font-style">耳机</a></li>
+          <li class="nav-item"><a href="javascript:;" class="nav-link font-style">充电线/线材</a></li>
+          <li class="nav-item"><a href="javascript:;" class="nav-link font-style">自拍杆/支架</a></li>
+          <li class="nav-item"><a href="javascript:;" class="nav-link font-style">音响</a></li>
+          <li class="nav-item"><a href="javascript:;" class="nav-link font-style">U盘/存储卡</a></li>
+          <li class="nav-item"><a href="javascript:;" class="nav-link font-style">摄像机/镜头</a></li>
+          <li class="nav-item"><a href="javascript:;" class="nav-link font-style">智能硬件</a></li>
+          <li class="nav-item"><a href="javascript:;" class="nav-link font-style">表带</a></li>
+        </ul>
+        <div class="float-right ml-4">
+          <a href="javascript:;">查看更多
+            <span class="mui-icon mui-icon-forward"></span>
+          </a>
+        </div>
+      </div>
+      <div class="mt-3 d-flex">
+        <div class="floor">
+          <ul class="list-unstyled d-flex">
+            <li class="f2-img">
+              <img src="http://127.0.0.1:3000/imgs/f7.1.jpg">
+            </li>
+            <li v-for="item of floor8" :key="item.i">
+              <a :href="item.a_href">
+                <img :src="item.img_url" class="mt-4 mb-2">
+                <h6 class="text-dark">{{item.title}}</h6>
+                <p class="mb-2 text-secondary">{{item.content}}</p>
+                <p class="text-danger">￥{{item.price}}</p>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>  
+    </div>
+    <div class="scroll1 d-flex mt-3">
+      <div class="prev" @click="next" :class="prevDisabled?'btn-disabled':''">
+        <span class="mui-icon mui-icon-back mt-4"></span>
+      </div>
+      <ul class="list-unstyled  d-flex" :style="ulScrollStyle">
+        <li v-for="item of scroll5" :key="item.i">
+          <a :href="item.a_href">
+            <div class="list-top">
+              <i class="p-0"><img :src="item.img_url" class="mt-4"></i>
+              <p class="p-2">{{item.content}}</p>
+            </div>
+            <div class="list-bottom">
+              <p class="text-dark m-0 mt-2">{{item.title}}</p>
+              <p class="text-danger">￥{{item.price}}</p>
+            </div>
+          </a>
+        </li>
+      </ul>
+      <div class="next" @click="prev" :class="nextDisabled?'btn-disabled':''">
+        <span class="mui-icon mui-icon-forward mt-4"></span>
+      </div>
+    </div>
+    <div class="mt-4 mb-5">
+      <a href="javascript:;">
+        <img src="http://127.0.0.1:3000/imgs/banner18.jpg" class="rounded">
+      </a>
     </div>
    </div>
     </div>
@@ -181,6 +573,7 @@
       return {
         // 轮播
         list:[],
+        list1:[],
         // 选项卡
         tablist:[
           {title:"手机",kind1:"荣耀",kind2:"HUAWEI P系列",tabcontent:[
@@ -269,6 +662,84 @@
           {a_href:"javascript:;",title:"荣耀畅玩8C",content:"4GB+32GB到手价899",price:"899",img_url:"http://127.0.0.1:3000/imgs/f7.png"},
           {a_href:"javascript:;",title:"HUAWEI P20 Pro",content:"下单减400",price:"4899",img_url:"http://127.0.0.1:3000/imgs/f8.png"},
         ],
+        floor2:[
+          {a_href:"javascript:;",title:"华为畅享9 Plus",content:"四摄全面屏",price:"1499",img_url:"http://127.0.0.1:3000/imgs/f2.2.png"},
+          {a_href:"javascript:;",title:"荣耀Note10",content:"最高优惠600",price:"2599",img_url:"http://127.0.0.1:3000/imgs/f2.3.png"},
+          {a_href:"javascript:;",title:"HUAWEI Mate 20 RS",content:"保时捷设计",price:"12999",img_url:"http://127.0.0.1:3000/imgs/f2.4.png"},
+          {a_href:"javascript:;",title:"荣耀Magic2",content:"限时优惠300元",price:"3499",img_url:"http://127.0.0.1:3000/imgs/f2.5.png"},
+          {a_href:"javascript:;",title:"HUAWEI nova3",content:"领券最高减100元",price:"2799",img_url:"http://127.0.0.1:3000/imgs/f2.6.png"},
+          {a_href:"javascript:;",title:"荣耀8X Max",content:"64GB减100",price:"1499",img_url:"http://127.0.0.1:3000/imgs/f2.7.png"},
+          {a_href:"javascript:;",title:"HUAWEI nova 3i",content:"享6期免息",price:"1899",img_url:"http://127.0.0.1:3000/imgs/f2.8.png"},
+          {a_href:"javascript:;",title:"荣耀Play",content:"最高优惠300元",price:"1899",img_url:"http://127.0.0.1:3000/imgs/f2.9.png"},
+          {a_href:"javascript:;",title:"华为畅享9",content:"64G版下单立减100",price:"1199",img_url:"http://127.0.0.1:3000/imgs/f2.10.png"},
+          {a_href:"javascript:;",title:"荣耀畅玩7",content:"下单立减50元",price:"599",img_url:"http://127.0.0.1:3000/imgs/f2.11.png"},
+          {a_href:"javascript:;",title:"华为畅享8e 青春",content:"5.45英寸高清全面屏",price:"799",img_url:"http://127.0.0.1:3000/imgs/f2.12.png"},
+          {a_href:"javascript:;",title:"华为畅享8",content:"6期免息",price:"1199",img_url:"http://127.0.0.1:3000/imgs/f2.13.png"},
+          {a_href:"javascript:;",title:"HUAWEI 麦芒7",content:"领券减200元+6期免息",price:"2199",img_url:"http://127.0.0.1:3000/imgs/f2.14.png"},
+          {a_href:"javascript:;",title:"荣耀畅玩8C",content:"4GB+32GB到手价899",price:"899",img_url:"http://127.0.0.1:3000/imgs/f2.15.png"},
+        ],
+        floor3:[
+          {a_href:"javascript:;",title:"荣耀MagicBook 2019锐龙版",content:"订金100元抵400元 赠耳机",price:"4299",img_url:"http://127.0.0.1:3000/imgs/f3.2.png"},
+          {a_href:"javascript:;",title:"HUAWEI MateBook E 2019款",content:"订金100抵200+赠蓝牙鼠标",price:"3999",img_url:"http://127.0.0.1:3000/imgs/f3.3.png"},
+          {a_href:"javascript:;",title:"荣耀MagicBook",content:"最高直降300元 享6期免息",price:"4699",img_url:"http://127.0.0.1:3000/imgs/f3.4.png"},
+          {a_href:"javascript:;",title:"HUAWEI MateBook D",content:"限量赠华为双肩包",price:"4988",img_url:"http://127.0.0.1:3000/imgs/f3.5.png"},
+          {a_href:"javascript:;",title:"HUAWEI MateBook 13",content:"稀缺货源 限量发售",price:"5699",img_url:"http://127.0.0.1:3000/imgs/f3.6.png"},
+          {a_href:"javascript:;",title:"荣耀MagicBook 星云紫",content:"高颜值时尚轻薄本",price:"5699",img_url:"http://127.0.0.1:3000/imgs/f3.7.png"},
+          {a_href:"javascript:;",title:"HUAWEI MateBook 14",content:"优享购免登记",price:"5699",img_url:"http://127.0.0.1:3000/imgs/f3.8.png"},
+          {a_href:"javascript:;",title:"荣耀MagicBook 触控版",content:"touch触控 随心而动",price:"5699",img_url:"http://127.0.0.1:3000/imgs/f3.9.png"},
+          {a_href:"javascript:;",title:"HUAWEI MateBook E",content:"限量赠配件礼包",price:"4288",img_url:"http://127.0.0.1:3000/imgs/f3.10.png"},
+        ],
+        floor4:[
+          {a_href:"javascript:;",title:"荣耀平板5 10.1英寸",content:"最高直降200元",price:"1199",img_url:"http://127.0.0.1:3000/imgs/f4.2.png"},
+          {a_href:"javascript:;",title:"华为平板 M5 青春版 10.1英寸",content:"智能语音平板",price:"2199",img_url:"http://127.0.0.1:3000/imgs/f4.3.png"},
+          {a_href:"javascript:;",title:"荣耀平板5 8英寸",content:"最高直降50元",price:"1049",img_url:"http://127.0.0.1:3000/imgs/f4.4.png"},
+          {a_href:"javascript:;",title:"华为畅享平板",content:"畅快追剧，大屏享受",price:"1249",img_url:"http://127.0.0.1:3000/imgs/f4.5.png"},
+          {a_href:"javascript:;",title:"荣耀WaterPlay 防水影音平板",content:"订金10元抵310元",price:"1799",img_url:"http://127.0.0.1:3000/imgs/f4.6.png"},
+          {a_href:"javascript:;",title:"华为平板M5 10.8英寸",content:"限量赠平板支架",price:"2488",img_url:"http://127.0.0.1:3000/imgs/f4.7.png"},
+          {a_href:"javascript:;",title:"荣耀Waterplay 8英寸",content:"哈曼卡顿调音",price:"1499",img_url:"http://127.0.0.1:3000/imgs/f4.8.png"},
+          {a_href:"javascript:;",title:"华为平板M5 8.4英寸",content:"哈曼卡顿调音",price:"1988",img_url:"http://127.0.0.1:3000/imgs/f4.9.png"},
+          {a_href:"javascript:;",title:"荣耀畅玩平板2 9.6英寸 ",content:"限时直降50元",price:"1049",img_url:"http://127.0.0.1:3000/imgs/f4.10.png"},
+        ],
+        floor5:[
+          {a_href:"javascript:;",title:"荣耀手表魔法系列",content:"最高直降100元 3期免息",price:"849",img_url:"http://127.0.0.1:3000/imgs/f5.1.png"},
+          {a_href:"javascript:;",title:"华为手环",content:"彩屏健康手环",price:"949",img_url:"http://127.0.0.1:3000/imgs/f5.2.png"},
+          {a_href:"javascript:;",title:"荣耀手表梦幻系列",content:"最高直降100元 3期免息",price:"999",img_url:"http://127.0.0.1:3000/imgs/f5.3.png"},
+          {a_href:"javascript:;",title:"HUAWEI WATCH 2 Pro",content:"手机手表共享一个号码",price:"2188",img_url:"http://127.0.0.1:3000/imgs/f5.4.png"},
+          {a_href:"javascript:;",title:"荣耀手环4",content:"限时直降10元",price:"189",img_url:"http://127.0.0.1:3000/imgs/f5.5.png"},
+          {a_href:"javascript:;",title:"荣耀手环3 Pro",content:"独立GPS 彩屏健康手环",price:"399",img_url:"http://127.0.0.1:3000/imgs/f5.6.png"},
+          {a_href:"javascript:;",title:"荣耀手环3",content:"最高直降90元",price:"109",img_url:"http://127.0.0.1:3000/imgs/f5.7.png"},
+          {a_href:"javascript:;",title:"华为儿童手表3 Pro",content:"4G全网通 高清拍照",price:"988",img_url:"http://127.0.0.1:3000/imgs/f5.8.png"},
+        ],
+        floor6:[
+          {a_href:"javascript:;",title:"荣耀路由Pro 2 ",content:"限时直降20元",price:"329",img_url:"http://127.0.0.1:3000/imgs/f6.1.png"},
+          {a_href:"javascript:;",title:"华为AI音响",content:"丹拿音质 声纹识别",price:"399",img_url:"http://127.0.0.1:3000/imgs/f6.2.png"},
+          {a_href:"javascript:;",title:"荣耀YOYO智能音响",content:"限时直降10元",price:"189",img_url:"http://127.0.0.1:3000/imgs/f6.3.png"},
+          {a_href:"javascript:;",title:"华为路由WS5200增强版",content:"限时直降12元",price:"217",img_url:"http://127.0.0.1:3000/imgs/f6.4.png"},
+          {a_href:"javascript:;",title:"荣耀路由2S",content:"限时直降20元",price:"179",img_url:"http://127.0.0.1:3000/imgs/f6.5.png"},
+          {a_href:"javascript:;",title:"华为路由器WS5102",content:"限时直降15元",price:"144",img_url:"http://127.0.0.1:3000/imgs/f6.6.png"},
+          {a_href:"javascript:;",title:"荣耀路由Pro",content:"限时直降79元",price:"249",img_url:"http://127.0.0.1:3000/imgs/f6.7.png"},
+          {a_href:"javascript:;",title:"华为备咖存储",content:"限时直降50元",price:"649",img_url:"http://127.0.0.1:3000/imgs/f6.8.png"},
+        ],
+        floor7:[
+          {a_href:"javascript:;",title:"荣耀FlyPods青春版 真无线耳机",content:"赠210元超值礼包",price:"399",img_url:"http://127.0.0.1:3000/imgs/f7.1.png"},
+          {a_href:"javascript:;",title:"FlyPods系列无线耳机",content:"赠210元超值礼包",price:"799",img_url:"http://127.0.0.1:3000/imgs/f7.2.png"},
+          {a_href:"javascript:;",title:"HUAWEI FreeBuds2系列",content:"骨声纹识别 智慧声控",price:"999",img_url:"http://127.0.0.1:3000/imgs/f7.3.png"},
+          {a_href:"javascript:;",title:"荣耀只能体脂称",content:"科学指导减脂",price:"129",img_url:"http://127.0.0.1:3000/imgs/f7.4.png"},
+          {a_href:"javascript:;",title:"华为安居智能摄像机",content:"360度全景视角",price:"299",img_url:"http://127.0.0.1:3000/imgs/f7.5.png"},
+          {a_href:"javascript:;",title:"荣耀xSport 运动蓝牙耳机",content:"10天待机/11小时续航",price:"179",img_url:"http://127.0.0.1:3000/imgs/f7.6.png"},
+          {a_href:"javascript:;",title:"荣耀移动电源2",content:"18W双向快充/新国际指标",price:"99",img_url:"http://127.0.0.1:3000/imgs/f7.7.png"},
+          {a_href:"javascript:;",title:"华为40W超级快充移动电源",content:"双向40W超级快充",price:"369",img_url:"http://127.0.0.1:3000/imgs/f7.8.png"},
+        ],
+        floor8:[
+          {a_href:"javascript:;",title:"FlyPods系列无线耳机",content:"赠210元超值礼包",price:"799",img_url:"http://127.0.0.1:3000/imgs/f8.2.png"},
+          {a_href:"javascript:;",title:"HUAWEI FreeBuds2系列",content:"骨声纹识别 智慧声控",price:"999",img_url:"http://127.0.0.1:3000/imgs/f8.3.png"},
+          {a_href:"javascript:;",title:"荣耀只能体脂称",content:"科学指导减脂",price:"129",img_url:"http://127.0.0.1:3000/imgs/f8.4.png"},
+          {a_href:"javascript:;",title:"华为安居智能摄像机",content:"360度全景视角",price:"299",img_url:"http://127.0.0.1:3000/imgs/f8.5.png"},
+          {a_href:"javascript:;",title:"荣耀xSport 运动蓝牙耳机",content:"10天待机/11小时续航",price:"179",img_url:"http://127.0.0.1:3000/imgs/f8.6.png"},
+          {a_href:"javascript:;",title:"荣耀移动电源2",content:"18W双向快充/新国际指标",price:"99",img_url:"http://127.0.0.1:3000/imgs/f8.7.png"},
+          {a_href:"javascript:;",title:"华为40W超级快充移动电源",content:"双向40W超级快充",price:"369",img_url:"http://127.0.0.1:3000/imgs/f8.8.png"},
+          {a_href:"javascript:;",title:"华为40W超级快充移动电源",content:"双向40W超级快充",price:"369",img_url:"http://127.0.0.1:3000/imgs/f8.9.png"},
+        ],
         scroll1:[
           {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list1.png",content:"新品首发 限时直降300元",title:"荣耀MagicBook 2019瑞龙版",price:"3999"},
           {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list2.png",content:"稀缺货源+享6期免息",title:"HUAWEI MateBook X Pro 2019款",price:"7999"},
@@ -285,26 +756,112 @@
           {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list13.png",content:"最高直降100元",title:"荣耀平板5 8英寸",price:"999"},
           {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list14.png",content:"360度全景云台",title:"荣耀小哨兵智能摄像机 云台版",price:"299"},
           {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list15.png",content:"新品上市 享3期免息",title:"华为路由 Q2 Pro",price:"769"},
-        ]
+        ],
+        scroll2:[
+          {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list16.png",content:"限时直降40元",title:"荣耀小K 儿童手表",price:"259"},
+          {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list17.png",content:"实时心率 彩屏触控",title:"华为手环",price:"269"},
+          {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list18.png",content:"两种佩戴方式",title:"荣耀手环4 Running版",price:"99"},
+          {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list19.png",content:"蓝牙通话 NFC支付",title:"HUAWEI WATCH 2",price:"1288"},
+          {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list20.png",content:"OLED大屏，防尘防水",title:"荣耀畅玩手环A2",price:"99"},
+          {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list21.png",content:"精准定位，清晰通话",title:"华为儿童手表3",price:"398"},
+          {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list22.png",content:"低调奢华 天生不凡",title:"华为智能手表",price:"4988"},
+          {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list23.png",content:"是手环，也是耳机",title:"华为手环B3 青春版",price:"469"},
+          {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list24.png",content:"14天持久续航",title:"华为手环3e 跑步精灵",price:"99"},
+          {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list25.png",content:"手环",title:"华为运动手环 GPS版",price:"338"},
+          {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list26.png",content:"适配HUAWEI P20系列",title:"HUAWEI VR 2",price:"1999"},
+        ],
+        scroll3:[
+          {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list27.png",content:"限时直降20元",title:"荣耀盒子Pro",price:"399"},
+          {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list28.png",content:"限时直降20元",title:"华为路由器A1",price:"379"},
+          {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list29.png",content:"限时直降50元",title:"荣耀存储",price:"649"},
+          {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list30.png",content:"限时直降50元",title:"华为子母路由器Q1",price:"409"},
+          {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list31.png",content:"限时优惠4元",title:"荣耀路由X2",price:"145"},
+          {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list32.png",content:"限时直降10元",title:"华为路由WS5200",price:"189"},
+          {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list33.png",content:"最高优惠100元",title:"荣耀分布式路由",price:"799"},
+          {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list34.png",content:"限时直降5元",title:"华为WiFi放大器",price:"94"},
+          {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list35.png",content:"限时直降10元",title:"荣耀路由X1 增强版",price:"139"},
+          {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list36.png",content:"限时直降20元",title:"华为路由器WS5100",price:"139"},
+          {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list37.png",content:"即插即用 自动配对",title:"荣耀WIFI穿墙宝",price:"256"},
+          {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list38.png",content:"轻薄小巧 口袋WiFi",title:"华为随行WIFi 2畅享版",price:"329"},
+        ],
+        scroll4:[
+          {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list39.png",content:"支持QI无线充电标准",title:"华为无线充电器",price:"99"},
+          {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list40.png",content:"健康减脂必备",title:"华为智能体脂称",price:"169"},
+          {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list41.png",content:"3种降噪模式切换",title:"华为主动降噪耳机3",price:"399"},
+          {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list42.png",content:"360度全景云台",title:"荣耀小哨兵只能摄像机",price:"299"},
+          {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list43.png",content:"开启自拍新时代",title:"华为无线三脚架自拍杆",price:"89"},
+          {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list44.png",content:"清新画质/小巧便携",title:"荣耀MINI照片打印机",price:"599"},
+          {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list45.png",content:"支持9V2A快充",title:"华为车载充电器快充版",price:"69"},
+          {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list46.png",content:"物理调音黑科技",title:"荣耀引擎耳机2代",price:"89"},
+          {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list47.png",content:"赠5A Type C数据线",title:"荣耀车载充电器",price:"129"},
+          {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list48.png",content:"360度无界视野",title:"华为全景相机",price:"599"},
+          {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list49.png",content:"AI高清夜视/看的更安心",title:"荣耀小哨兵智能摄像机",price:"199"},
+          {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list50.png",content:"可测心理压力 提供放松训练",title:"华为运动心率蓝牙耳机",price:"549"},
+          {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list51.png",content:"三线线控/高性价比",title:"荣耀AM116半入耳式耳机",price:"59"},
+          {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list51.png",content:"4.5V5A车充",title:"华为车载充电器",price:"149"},
+          {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list53.png",content:"实时心率监测",title:"荣耀心晴耳机",price:"129"},
+          {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list54.png",content:"360度照片/视频/微博直播",title:"华为全景相机酷玩版",price:"599"},
+          {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list55.png",content:"给您如临现场的音质体验",title:"荣耀魔声耳机",price:"229"},
+          {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list56.png",content:"三挡补光特效 柔光自拍",title:"华为补光灯自拍杆",price:"139"},
+        ],
+        scroll5:[
+          {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list57.png",content:"出色音质体验",title:"大康专用运动型蓝牙耳机",price:"128"},
+          {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list58.png",content:"源自丹麦",title:"PanzerGlass mate20",price:"98"},
+          {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list59.png",content:"一分钟快速降温",title:"55度moscup智能降温杯",price:"239"},
+          {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list60.png",content:"一款为花粉打造的智能灯泡",title:"Sengled生智能LED灯泡",price:"39"},
+          {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list61.png",content:"360度云台全景",title:"海雀智能摄像头H1",price:"249"},
+          {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list62.png",content:"静谧时光 添色添香",title:"欧普香薰助眠灯",price:"189"},
+          {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list63.png",content:"5种安全保护",title:"耐翔Type-C 通用U盘",price:"129"},
+          {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list64.png",content:"手机远程控制",title:"欧瑞博智能插座S30c",price:"47"},
+          {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list65.png",content:"炖煮兼用，钛会养生",title:"Amos养生壶",price:"349"},
+          {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list66.png",content:"智能Type-C拓展 小巧便携",title:"绿联高清投屏转换器",price:"168"},
+          {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list67.png",content:"暖暖的心意",title:"欧普吹控灯(白色)",price:"6 9"},
+          {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list68.png",content:"智慧湿拖 高效覆盖",title:"科沃斯智能扫地机器人",price:"2799"},
+          {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list69.png",content:"保障居家健康",title:"720空气质量监测仪环境",price:"429"},
+          {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list70.png",content:"强效除霾 降醛灭菌",title:"720全智能净化器",price:"2149"},
+          {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list71.png",content:"多设备通用办公键盘",title:"BOW三折蓝牙背光键盘",price:"299"},
+          {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list71.png",content:"释放你的双手",title:"缤特力 商务蓝牙耳机",price:"368"},
+          {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list71.png",content:"超便捷的果蔬料理机",title:"魔飞便携式榨汁机",price:"328"},
+          {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list71.png",content:"手机轻松扩容，高效传输",title:"耐翔手机扩容U盘 安卓版",price:"65"},
+        ],
+        // 专门控制scroll下list
+        ulScrollStyle:{
+          "margin-left":0,
+        },
+        // 记录ul已经左移的li的次数
+        moved:0,
       };
     },
+    // 计算属性
     computed: {
       text () {
         return {
           id: this.number,
-          val: this.textArr[this.number]
+          val: this.textArr[this.number],
         }
+      },
+      //左右箭头禁用
+      prevDisabled(){
+        return this.moved==0;
+      },
+      nextDisabled(){
+        return this.moved>=this.scroll1.length/5-1;
       }
     },
     created(){
       this.bannerList();
-      this.startMove();
+      this.startMove(); 
+      this.bannerList1();
     },
     methods:{
       bannerList(){
         this.axios.get("http://127.0.0.1:3000/bannerlist").then(result=>{
-          console.log(result.data.data);
-          this.list=result.data.data;
+          this.list=result.data.data.splice(0,8);
+        })
+      },
+      bannerList1(){
+        this.axios.get("http://127.0.0.1:3000/bannerList").then(result=>{
+          this.list1=result.data.data.splice(8,15);
         })
       },
       //鼠标隐藏加入class
@@ -327,6 +884,20 @@
         }, 2000); // 滚动不需要停顿则将2000改成动画持续时间
       },
       // 左右箭头
+      prev(){
+        // 如果右边按钮没有禁用
+        if(this.nextDisabled==false){
+          this.moved++;
+          this.ulScrollStyle["margin-left"]=this.moved*-1200+"px";
+        } 
+      },
+      next(){
+        // 如果左边按钮没有禁用
+        if(this.prevDisabled==false){
+          this.moved--;
+          this.ulScrollStyle["margin-left"]=this.moved*-1200+"px";
+        }
+      },
     },
     //2.将header.vue设置为当前组件的子组件
     components:{  
@@ -336,16 +907,23 @@
   }
 </script>
 <style scoped>
+  .app-index{
+    background-color:#fff;
+    width:1920px;
+  }
   .main a{
     text-decoration:none;
     color:#595454;
+  }
+  .main a:hover{
+    color:#CF0A2C;
   }
   .main{width:1200px;}
   .font-style{
     font-size:.75rem;
   }
   /* 轮播样式 */
-  .mint-swipe{
+  .top-banner .mint-swipe{
     height:550px;
   }
   .banner{
@@ -401,6 +979,7 @@
   /* navbar */
   .navbar{
     border-radius:10px;
+    box-shadow:0px 0px 5px 5px #ddd;
   }
   .nav-item a{
     text-decoration:none;
@@ -484,35 +1063,36 @@
   }
   /* 圆角 */
   .round{border-radius:8px;}
-  /* floor1 */
-  .floor{
-    width:940px;
-    }
-  .floor1 ul{
-    display: flex;
-    width:968px;
-    height:592px;
-    flex-wrap:wrap;
-    }
-  .floor1 li{
+  /* 楼层 */
+  .floor li{
     width:230px;
     height:290px;
     border-radius:8px;
     background-color:#f9f9f9;
     margin:6px 6px 6px 6px;
   }
-  .floor1 ul>li img{
+  .floor ul>li img{
     width:150px;
     height:150px;;
   }
-   .floor1 li:hover{
+   .floor li:hover{
      background:#fff;
      box-shadow:0px 5px 5px 5px #ddd;
    }
+  /* 一层 */
+  .floor1 ul{
+    display: flex;
+    width:968px;
+    height:592px;
+    flex-wrap:wrap;
+    }
    /* 左右切换 */
-   .scroll ul{
-     width:1200px;
-     display:flex;
+   .scroll{
+     overflow:hidden;
+     position:relative;
+   }
+   .scroll ul li{
+     margin:5px;
    }
    .scroll a{
      display:block;
@@ -542,18 +1122,108 @@
      border-radius:0 0 8px 8px;
    }
    /* 左右箭头 */
-   .scroll{position: relative;}
-   .prev,.next{
+   .scroll .prev,.scroll .next{
      width:36px;
      height:72px;
      position:absolute;
      background:rgba(0,0,0,0.06);
-     top:80px;
+     top:88px;
    }
-   .next{
-     right:18px;
+  /* 禁用样式 */
+   .scroll .btn-disabled{
+     display:none;
    }
-   .prev,.next:hover{
+   .scroll .prev{
+     left:5px;
+     border-radius:0 8px 8px 0;
+   }
+   .scroll .next{
+      right:5px;
+      border-radius: 8px 0 0 8px;
+   }
+   .prev:hover,.next:hover{
      background-color:#ddd;
+   }
+   /* 中间轮播 */
+   .banner1 .mint-swipe{
+     height:120px;
+     margin:4px 0;
+   }
+  .banner1 .mint-swipe img{
+    border-radius:8px;
+  }
+  /* 第二层 */
+  .floor img{
+    width:150px;
+    height:150px;
+  }
+  .f1-img img{
+    width:230px !important;
+    height:290px !important;
+    border-radius:5px;
+  }
+  .floor ul{
+    flex-wrap:wrap;
+  }
+  .floor ul li{
+    margin:5px;
+  }
+  .f2-img{
+    width:470px !important;
+    height:290px !important;
+  }
+  .f2-img img{
+    width:470px !important;
+    height:290px !important;
+    border-radius:5px;
+  }
+
+   /* 左右切换 小图*/
+   .scroll1{
+     overflow:hidden;
+     position:relative;
+   }
+   .scroll1 ul li{
+     margin:5px;
+   }
+   .scroll1 a{
+     display:block;
+     width:190px;
+     height:240px;
+   }
+    .scroll1 .list-top{
+      height:190px;
+    }
+    .scroll1 i{
+      display:block;
+      height:158px;
+      background:#f9f9f9;
+      border-radius:8px 8px 0 0;
+    }
+   .scroll1 img{
+     width:120px;
+     height:120px;
+   }
+   .scroll1 .list-top p{
+     background-color:#ddd;
+     border-radius:0 0 8px 8px;
+   }
+   .scroll1 .btn-disabled{
+     display:none;
+   }
+   .scroll1 .prev{
+     left:5px;
+     border-radius:0 8px 8px 0;
+   }
+   .scroll1 .next{
+      right:5px;
+      border-radius: 8px 0 0 8px;
+   }
+  .scroll1 .prev,.next{
+     width:36px;
+     height:72px;
+     position:absolute;
+     background:rgba(0,0,0,0.06);
+     top:55px;
    }
 </style>

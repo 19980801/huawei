@@ -209,6 +209,8 @@ export default {
 <style scoped>
   footer{
     background:#f9f9f9;
+    width:1920px;
+    margin:0 auto;
   }
   footer a{
     text-decoration:none;
