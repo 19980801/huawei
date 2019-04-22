@@ -177,7 +177,7 @@
       </mt-swipe>
     </div>
     <!-- 二层 -->
-    <div class="mt-5">
+    <div class="mt-5" id="d1">
       <div class="d-flex">
         <h3 class="text-left col-1">手机</h3>
         <ul class="nav col-9">
@@ -230,7 +230,7 @@
       </div>
     </div>
     <!-- 三层 -->
-    <div class="mt-5">
+    <div class="mt-5" id="d2">
       <div class="d-flex">
         <h3 class="text-left col-2">笔记本电脑</h3>
         <ul class="nav ml-4 col-8">
@@ -269,7 +269,7 @@
       </div>
     </div>
     <!-- 四层 -->
-    <div class="mt-5">
+    <div class="mt-5" id="d3">
       <div class="d-flex justify-content-between">
         <h3 class="text-left col-2">精品平板</h3>
         <ul class="nav col-8">
@@ -302,7 +302,7 @@
       </div>
     </div>
     <!-- 五层 -->
-    <div class="mt-5">
+    <div class="mt-5" id="d4">
       <div class="d-flex">
         <h3 class="text-left col-2">智能穿戴</h3>
         <ul class="nav col-8">
@@ -357,7 +357,7 @@
       </div>
     </div>
     <!-- 六层 -->
-    <div class="mt-5">
+    <div class="mt-5" id="d5">
       <div class="d-flex">
         <h3 class="text-left">智能家居</h3>
         <ul class="nav ml-2">
@@ -426,7 +426,7 @@
       <img src="http://127.0.0.1:3000/imgs/banner17.jpg" class="rounded">
     </div>
     <!-- 七层 -->
-    <div class="mt-5">
+    <div class="mt-5" id="d6">
       <div class="d-flex">
         <h3 class="text-left">热销配件</h3>
         <ul class="nav ml-2">
@@ -490,7 +490,7 @@
       </div>
     </div>
     <!-- 八层 -->
-    <div class="mt-5">
+    <div class="mt-5" id="d7">
       <div class="d-flex">
         <h3 class="text-left">品牌配件</h3>
         <ul class="nav ml-2">
@@ -559,6 +559,51 @@
       </a>
     </div>
    </div>
+   <!-- 底部工具栏 -->
+   <div class="tool">
+     <ul class="float-tool list-unstyled">
+       <li>
+         <a href="javascript:;">
+          <span class="iconfont icon-cart-normal"></span>
+          <div class="shop-msg">
+            <span>购物车</span>
+          </div>           
+         </a>
+      </li>
+       <li>
+         <a href="javascript:;">
+          <span class="iconfont icon-kefu"></span>
+          <div class="kf-msg">
+            <span>在线客服</span>
+          </div>           
+         </a>
+      </li>
+       <li>
+         <span class="iconfont icon-bianji"></span>
+         <div class="msg">
+           <span>意见反馈</span>
+         </div>
+      </li>
+       <li @click="toTop(step)" :class="{show:isActive}">
+         <span class="iconfont icon-huidingbu"></span>
+         <div class="top-msg">
+           <span>返回顶部</span>
+         </div>
+      </li>
+     </ul>
+   </div>
+   <!-- 侧面菜单栏 -->
+   <div class="float-list">
+     <ul class="list-unstyled" :class="[isSelected]"> 
+       <li><a href="javascript:;" id="f1">手机</a></li>
+       <li><a href="#" id="f2">笔记本电脑</a></li>
+       <li><a href="#slab" id="f3">精品平板</a></li>
+       <li><a href="#wear" id="f4">智能穿戴</a></li>
+       <li><a href="#home" id="f5">智能家居</a></li>
+       <li><a href="#part" id="f6">热销配件</a></li>
+       <li><a href="#part1" id="f7">品牌配件</a></li>
+     </ul>
+   </div>
     </div>
     <my-footer></my-footer>
   </div>
@@ -568,7 +613,13 @@
   import myHeader from "@/components/header.vue";
   import myFooter from "@/components/footer.vue";
   export default {
-    name: 'scroll',
+    props:{
+      // 控制动画快慢
+      step:{
+        type:Number,
+        default:50
+      }
+    },
     data(){
       return {
         // 轮播
@@ -830,6 +881,8 @@
         },
         // 记录ul已经左移的li的次数
         moved:0,
+        //
+       isSelected: '',
       };
     },
     // 计算属性
@@ -852,6 +905,15 @@
       this.bannerList();
       this.startMove(); 
       this.bannerList1();
+      // 返回顶部
+      var vm=this;
+      window.onscroll=function(){
+        if(document.documentElement.scrollTop>1000){
+          vm.isActive=true;
+        }else{
+          vm.isActive=false;
+        }
+      }
     },
     methods:{
       bannerList(){
@@ -898,6 +960,18 @@
           this.ulScrollStyle["margin-left"]=this.moved*-1200+"px";
         }
       },
+      // 返回顶部
+      toTop(i){
+        // 参数i表示间隔幅度大小；来控制速度
+        //console.log(i);
+      document.documentElement.scrollTop-=i;
+       if(document.documentElement.scrollTop>0){
+         t=setTimeout(()=>this.toTop(i),10);
+       }else{
+         clearTimeout(t);
+       }
+      },
+      // 滑动跟随
     },
     //2.将header.vue设置为当前组件的子组件
     components:{  
@@ -1225,5 +1299,77 @@
      position:absolute;
      background:rgba(0,0,0,0.06);
      top:55px;
+   }
+   /* 底部工具栏 */
+   .float-tool a{
+     text-decoration:none;
+     color:#595454
+   }
+   .float-tool{
+    color:#595454;
+    position:fixed; 
+    right:10px;
+    bottom:10px;
+   }
+   .float-tool li{
+    position: relative;
+    margin-bottom:2px;
+    width:35px;
+    height:35px;
+    cursor:pointer;
+   }
+   .float-tool li:hover div{
+     display:block;
+   }
+  .float-tool li div{
+    display:none;
+    position:absolute;
+    right:40px;
+    width:80px;
+    height:30px;
+    line-height:30px;
+    font-size:12px;
+    background-color:#fff;
+  }
+   .shop-msg{
+     top:-5px;
+   }
+   .kf-msg{
+     top:-8px;
+   }
+   .msg{
+     top:-9px;
+   }
+   .top-msg{
+     top:-9px;
+   }
+   .float-tool li:last-child{
+     display:none;
+   }
+   .show{
+     display:block !important;
+   }
+   /* 悬浮菜单 */
+   .float-list{
+     position:fixed;
+     right:10px;
+     top:500px;
+     width:100px;
+     color:#595454;
+     border-radius:5px;
+   }
+   .float-list a{
+     text-decoration:none;
+     color:#595454;
+     font-size:14px;
+   }
+   .float-list li{
+     width:100px;
+     height:30px;
+     margin:4px;
+     line-height:30px;
+   }
+   .float-list li:hover{
+     background:#ddd;
    }
 </style>

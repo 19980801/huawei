@@ -20,6 +20,14 @@ Vue.config.productionTip = false
 axios.defaults.withCredentials=true;
 Vue.prototype.axios=axios;
 
+ Vue.directive('anchor',{
+  inserted : function(el,binding){
+  el.onclick = function(){
+      document.documentElement.scrollTop = $('#anchor-'+binding.value).offset().top
+  }
+  }
+  })
+
 new Vue({
   router,
   store,
