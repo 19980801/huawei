@@ -3,7 +3,7 @@
     <my-header></my-header>
     <div>
     <div class="top-banner">
-      <mt-swipe :auto="1000">
+      <mt-swipe :auto="8000">
         <mt-swipe-item v-for="item of list" :key="item.id">
           <a :href="item.a_href"><img :src="item.img_url" class="banner"></a>
         </mt-swipe-item>
@@ -177,7 +177,7 @@
       </mt-swipe>
     </div>
     <!-- 二层 -->
-    <div class="mt-5" id="d1">
+    <div class="mt-5 listshow1">
       <div class="d-flex">
         <h3 class="text-left col-1">手机</h3>
         <ul class="nav col-9">
@@ -230,7 +230,7 @@
       </div>
     </div>
     <!-- 三层 -->
-    <div class="mt-5" id="d2">
+    <div class="mt-5 listshow2">
       <div class="d-flex">
         <h3 class="text-left col-2">笔记本电脑</h3>
         <ul class="nav ml-4 col-8">
@@ -269,7 +269,7 @@
       </div>
     </div>
     <!-- 四层 -->
-    <div class="mt-5" id="d3">
+    <div class="mt-5 listshow3">
       <div class="d-flex justify-content-between">
         <h3 class="text-left col-2">精品平板</h3>
         <ul class="nav col-8">
@@ -302,7 +302,7 @@
       </div>
     </div>
     <!-- 五层 -->
-    <div class="mt-5" id="d4">
+    <div class="mt-5 listshow4">
       <div class="d-flex">
         <h3 class="text-left col-2">智能穿戴</h3>
         <ul class="nav col-8">
@@ -357,7 +357,7 @@
       </div>
     </div>
     <!-- 六层 -->
-    <div class="mt-5" id="d5">
+    <div class="mt-5 listshow5">
       <div class="d-flex">
         <h3 class="text-left">智能家居</h3>
         <ul class="nav ml-2">
@@ -426,7 +426,7 @@
       <img src="http://127.0.0.1:3000/imgs/banner17.jpg" class="rounded">
     </div>
     <!-- 七层 -->
-    <div class="mt-5" id="d6">
+    <div class="mt-5 listshow6">
       <div class="d-flex">
         <h3 class="text-left">热销配件</h3>
         <ul class="nav ml-2">
@@ -490,7 +490,7 @@
       </div>
     </div>
     <!-- 八层 -->
-    <div class="mt-5" id="d7">
+    <div class="mt-5 listshow7">
       <div class="d-flex">
         <h3 class="text-left">品牌配件</h3>
         <ul class="nav ml-2">
@@ -593,15 +593,15 @@
      </ul>
    </div>
    <!-- 侧面菜单栏 -->
-   <div class="float-list">
-     <ul class="list-unstyled" :class="[isSelected]"> 
-       <li><a href="javascript:;" id="f1">手机</a></li>
-       <li><a href="#" id="f2">笔记本电脑</a></li>
-       <li><a href="#slab" id="f3">精品平板</a></li>
-       <li><a href="#wear" id="f4">智能穿戴</a></li>
-       <li><a href="#home" id="f5">智能家居</a></li>
-       <li><a href="#part" id="f6">热销配件</a></li>
-       <li><a href="#part1" id="f7">品牌配件</a></li>
+   <div class="float-list" :class="{show:isActive}">
+     <ul class="list-unstyled"> 
+       <li @click="showDetails(1)"><a href="javascript:;">手机</a></li>
+       <li @click="showDetails(2)"><a href="javascript:;">笔记本电脑</a></li>
+       <li @click="showDetails(3)"><a href="javascript:;">精品平板</a></li>
+       <li @click="showDetails(4)"><a href="javascript:;">智能穿戴</a></li>
+       <li @click="showDetails(5)"><a href="javascript:;">智能家居</a></li>
+       <li @click="showDetails(6)"><a href="javascript:;">热销配件</a></li>
+       <li @click="showDetails(7)"><a href="javascript:;">品牌配件</a></li>
      </ul>
    </div>
     </div>
@@ -696,11 +696,11 @@
         // tabcontent:'',
         isActive:false,
         textArr:[
-          '1 第一条公告',
-          '2 第二条公告第二条公告',
-          '3 第三条公告第三条公告第三条公告lksaujfasf',
-          '4 第三条公告第三条公告第三条公告fa;skf;sakfsajfa',
-          '5 第三条公告第三条公告第三条公告alsfjafsajf',
+          '电影票优惠券使用说明',
+          '使用Huawei Pay支付抢购P30新机赢蓝牙小音箱！中奖名单公布！',
+          '使用Huawei Pay支付抢购P30新机赢50话费！中奖名单公布！',
+          'HUAWEI P30系列首销 银行渠道6期免息',
+          '消费体验有奖调研中奖名单公布',
         ],
         number:0,
         floor1:[
@@ -881,8 +881,7 @@
         },
         // 记录ul已经左移的li的次数
         moved:0,
-        //
-       isSelected: '',
+        showIndex:null,
       };
     },
     // 计算属性
@@ -908,7 +907,7 @@
       // 返回顶部
       var vm=this;
       window.onscroll=function(){
-        if(document.documentElement.scrollTop>1000){
+        if(document.documentElement.scrollTop>2383){
           vm.isActive=true;
         }else{
           vm.isActive=false;
@@ -966,12 +965,24 @@
         //console.log(i);
       document.documentElement.scrollTop-=i;
        if(document.documentElement.scrollTop>0){
-         t=setTimeout(()=>this.toTop(i),10);
+         var t=setTimeout(()=>this.toTop(i),10);
        }else{
          clearTimeout(t);
        }
       },
-      // 滑动跟随
+      // 右侧悬浮菜单栏滑动跟随
+      showDetails(num){
+        var el=document.getElementsByClassName(`listshow${num}`)[0];
+        console.log(el.offsetTop);
+        if(this.showIndex==num){
+          this.showIndex=null;
+        }else{
+          this.showIndex=num;
+        }
+        this.$nextTick(function(){
+          window.scrollTo({"behavior":"smooth","top":el.offsetTop});
+        })
+      }
     },
     //2.将header.vue设置为当前组件的子组件
     components:{  
@@ -1018,11 +1029,15 @@
     background-color: #F8FAFE;
     border-radius:10px;
   }
+  #tab:hover .tabNav{
+    border-radius:10px 0 0 10px;
+  }
   .tab-bar span:hover{
     color:#CF0A2C;
   }
   .tab-bar li:hover{
     background-color: #fff;
+    border-radius:10px;
   }
   .tabs-content a div:hover{
     background:#DFDFDF;
@@ -1035,7 +1050,7 @@
     height:100px;
     padding:10px;
   }
-   .tabs-content a img{
+  .tabs-content a img{
      width:60px;
      height:50px;
    }
@@ -1055,11 +1070,11 @@
     border-radius:10px;
     box-shadow:0px 0px 5px 5px #ddd;
   }
-  .nav-item a{
+   .nav-item a{
     text-decoration:none;
     color:#000;
   }
-  .navbar .nav-item img{
+ .nav-item img{
     width:52px;
     height:52px;
   }
@@ -1112,17 +1127,20 @@
     overflow: hidden;
     text-align: center
   }
-  .textBox a{
+ .textBox a{
     text-decoration:none;
   }
   .textBox a p:hover{
     color:#CF0A2C;
   }
+  .textBox .text{
+    overflow: hidden;  /*溢出隐藏*/
+    text-overflow: ellipsis; /*以省略号...显示*/
+    white-space: nowrap;  /*强制不换行*/
+  }
   .text-truncate{
     display:block; 
     overflow: hidden;
-    /* 超出文本用省略号代替 */
-    text-overflow: ellipsis;
     width:150px;
   }
   .d-flex.justify-content-around a{
@@ -1149,12 +1167,12 @@
     width:150px;
     height:150px;;
   }
-   .floor li:hover{
+  .floor li:hover{
      background:#fff;
      box-shadow:0px 5px 5px 5px #ddd;
    }
   /* 一层 */
-  .floor1 ul{
+ .floor1 ul{
     display: flex;
     width:968px;
     height:592px;
@@ -1219,7 +1237,7 @@
      background-color:#ddd;
    }
    /* 中间轮播 */
-   .banner1 .mint-swipe{
+    .banner1 .mint-swipe{
      height:120px;
      margin:4px 0;
    }
@@ -1227,26 +1245,26 @@
     border-radius:8px;
   }
   /* 第二层 */
-  .floor img{
+   .floor img{
     width:150px;
     height:150px;
   }
-  .f1-img img{
+   .f1-img img{
     width:230px !important;
     height:290px !important;
     border-radius:5px;
   }
-  .floor ul{
+   .floor ul{
     flex-wrap:wrap;
   }
   .floor ul li{
     margin:5px;
   }
-  .f2-img{
+ .f2-img{
     width:470px !important;
     height:290px !important;
   }
-  .f2-img img{
+ .f2-img img{
     width:470px !important;
     height:290px !important;
     border-radius:5px;
@@ -1257,7 +1275,7 @@
      overflow:hidden;
      position:relative;
    }
-   .scroll1 ul li{
+    .scroll1 ul li{
      margin:5px;
    }
    .scroll1 a{
@@ -1268,7 +1286,7 @@
     .scroll1 .list-top{
       height:190px;
     }
-    .scroll1 i{
+   .scroll1 i{
       display:block;
       height:158px;
       background:#f9f9f9;
@@ -1350,20 +1368,21 @@
      display:block !important;
    }
    /* 悬浮菜单 */
-   .float-list{
+    .float-list{
      position:fixed;
      right:10px;
      top:500px;
      width:100px;
      color:#595454;
      border-radius:5px;
+     display:none;
    }
    .float-list a{
      text-decoration:none;
      color:#595454;
      font-size:14px;
    }
-   .float-list li{
+  .float-list li{
      width:100px;
      height:30px;
      margin:4px;

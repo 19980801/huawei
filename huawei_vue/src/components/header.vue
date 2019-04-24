@@ -7,8 +7,8 @@
     <div class="top">
       <div class="container">
         <ul class="breadcrumb bg-transparent p-2">
-          <li class="breadcrumb-item"><a href="javascript:;" class="font-style">首页</a></li>
-          <li class="breadcrumb-item"><a href="javascript:;" class="font-style">华为官网</a></li>
+          <li class="breadcrumb-item"><a href="/" class="font-style">首页</a></li>
+          <li class="breadcrumb-item"><a href="/#/hw" class="font-style">华为官网</a></li>
           <li class="breadcrumb-item"><a href="javascript:;" class="font-style">荣耀官网</a></li>
           <li class="breadcrumb-item"><a href="javascript:;" class="font-style">花粉俱乐部</a></li>
           <li class="breadcrumb-item"><a href="javascript:;" class="font-style">V码(优购码)</a></li>
@@ -25,7 +25,7 @@
                 <li><a href="javascript:;" class="dropdown-item">开发者联盟</a></li>
               </ul>
             </li>
-          <li class="pl-2"><a href="javascript:;" class="font-style">请登录</a></li>
+          <li class="pl-2" @click="loginShow"><a href="javascript:;" class="font-style">请登录</a></li>
           <li class="breadcrumb-item pl-2"><a href="javascript:;" class="font-style">注册</a></li>
           <li class="breadcrumb-item"><a href="javascript:;" class="font-style">我的订单</a></li>
           <li class="breadcrumb-item dropdown">
@@ -169,6 +169,40 @@
         <span class="mui-icon mui-icon-search" @click="search"></span>
       </div>
     </section>
+    <!-- 登录框 -->
+    <div class="modal-bg" v-show="showModal">
+        <div class="modal-wrapper">
+            <div class="modal-container">
+              <div class="modal-header">
+                <span class="iconfont icon-guanbi2" @click="loginClose"></span>
+              </div>
+                <div class="modal-body">
+                  <h4 class="text-danger">账号登录</h4>
+                  <form action="#">
+                    <div class="mt-5">
+                      <input type="text" placeholder="手机号/邮件地址/华为账号" v-model="uname">
+                      <input type="password" placeholder="密码" v-model="upwd">
+                    </div>
+                  </form>
+                  <div class="mt-4"><input type="submit" value="登录"></div>
+                  <div class="text-left mt-3"><input type="checkbox">记住账号</div>
+                  <div class="mt-2">
+                    <span class="font-style mr-2"><a href="#" class="text-info">注册账号</a></span>
+                    <span>|</span>
+                    <span class="font-style ml-2"><a href="#" class="text-info">忘记密码?</a></span>
+                  </div>
+                </div>
+                <div class="modal-foot">
+                  <span class="cont font-style">其他登录方式</span>
+                  <div class="mt-4 icon justify-content-center">
+                    <a href="javascript:;"><span class="iconfont icon-qq"></span></a>
+                    <a href="javascript:;"><span class="iconfont icon-icon34"></span></a>
+                    <a href="javascript:;"><span class="iconfont icon-weixin1"></span></a>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
   </header> 
 </template>
 <script>
@@ -177,6 +211,7 @@
       return{
         show:true,
         kwords:"",
+        showModal:false
       }
     },
     methods:{
@@ -185,6 +220,12 @@
       },
       search(){
         console.log(this.kwords);
+      },
+      loginShow(){
+        this.showModal=!this.showModal;
+      },
+      loginClose(){
+        this.showModal=!this.showModal;
       }
     },
     watch: {
@@ -279,4 +320,83 @@
     top:18px;
     right:10px;
   }
+
+  /* 登录框 */
+  .modal-bg{
+    position:fixed;
+    z-index: 9998;
+    top: 0;
+    left: 0;
+    width:100%;
+    height:100%;
+    background-color:rgba(0, 0, 0, .5);
+    display:table;
+  }
+  /* 居中 */
+  .modal-wrapper{
+    display:table-cell;
+    vertical-align: middle;
+  }
+  .modal-container{
+    width:500px;
+    height:635px;
+    margin: 0px auto;
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
+    position:relative;
+    cursor:move;
+  }
+  .modal-header {
+    background-color:#a51b1b;
+    height:30px;
+  }
+  .modal-header span{
+    position:absolute;
+    top:4px;
+    right:10px;
+  }
+  .modal-body {
+    margin:8px 70px;
+  }
+  .modal-body input{
+    border:0;
+    border-bottom:1px solid #ddd;
+  }
+  input[type='submit']{
+    background-color:#a51b1b;
+    border:0;
+    width:328px;
+    height:44px;
+    border-radius:30px;
+  }
+  .modal-foot{
+    margin-top:100px;
+  }
+  .modal-foot .cont:before,.modal-foot .cont::after{
+    content:"——————";
+    color:#a4a4a4;
+    padding:0 30px;
+  }
+.modal-foot .icon .iconfont{
+  font-size:25px;
+}
+.modal-foot .icon>a{
+  display:inline-block;
+  margin-right:10px;
+  width:42px;
+  height:42px;
+  background-color:#999;
+  line-height:42px;
+  border-radius:50%;
+  color:#fff;
+} 
+.modal-foot .icon>a:nth-child(1):hover{
+  background-color:#2F98EA;
+}
+.modal-foot .icon>a:nth-child(2):hover{
+  background-color:#2F98EA;
+}
+.modal-foot .icon>a:nth-child(3):hover{
+  background-color:#21C121;
+}
 </style>
