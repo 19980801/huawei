@@ -982,7 +982,7 @@
         this.$nextTick(function(){
           window.scrollTo({"behavior":"smooth","top":el.offsetTop});
         })
-      }
+      },
     },
     //2.将header.vue设置为当前组件的子组件
     components:{  

@@ -172,19 +172,19 @@
     <!-- 登录框 -->
     <div class="modal-bg" v-show="showModal">
         <div class="modal-wrapper">
-            <div class="modal-container">
+            <div class="modal-container" v-move>
               <div class="modal-header">
                 <span class="iconfont icon-guanbi2" @click="loginClose"></span>
               </div>
                 <div class="modal-body">
                   <h4 class="text-danger">账号登录</h4>
-                  <form action="#">
+                  <form action="#" method="get">
                     <div class="mt-5">
                       <input type="text" placeholder="手机号/邮件地址/华为账号" v-model="uname">
                       <input type="password" placeholder="密码" v-model="upwd">
                     </div>
                   </form>
-                  <div class="mt-4"><input type="submit" value="登录"></div>
+                  <div class="mt-4"><input type="submit" value="登录" @click="login"></div>
                   <div class="text-left mt-3"><input type="checkbox">记住账号</div>
                   <div class="mt-2">
                     <span class="font-style mr-2"><a href="#" class="text-info">注册账号</a></span>
@@ -211,8 +211,14 @@
       return{
         show:true,
         kwords:"",
-        showModal:false
+        showModal:false,
+        // 登录
+        uname:"",                                         
+        upwd:"",
+        num:1,
       }
+    },
+    created() {
     },
     methods:{
       close(){
@@ -226,7 +232,26 @@
       },
       loginClose(){
         this.showModal=!this.showModal;
-      }
+      },
+      login(){
+        var uname=this.uname;
+        var upwd=this.upwd;
+        this.axios.get("http://127.0.0.1:3000/login",{
+          params:{
+            uname,
+            upwd,
+          }
+        }).then(result=>{
+          if(result.data.code==1){
+            this.loginClose();
+            setTimeout(() => {
+              location.href="#/index";
+            },900);
+          }else{
+            alert("用户名或密码错误!请重新输入!");
+          }
+        })
+      },
     },
     watch: {
       kwords(){

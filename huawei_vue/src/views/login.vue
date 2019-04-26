@@ -1,105 +1,145 @@
 <template>
-<div>
-  <button @click="loginShow">显示</button>
-        <div class="modal-bg" v-show="showModal">
-            <div class="modal-wrapper" >
-                <div class="modal-container">
-                    <div class="modal-header">
-                      <span class="iconfont icon-guanbi2 mb-2" @click="close"></span>
-                    </div>
-                    <form action="#">
-                      <div class="modal-body">
-                        用户名<input type="text">
-                        用户名<input type="text">
-                    </div>
-                    </form>
-                    <div class="modal-footer">
-                      <button class="modal-default-button btn-primary">确定</button>
-                    </div>
-                </div>
+  <div class="login">
+    <header class="container">
+      <img src="http://127.0.0.1:3000/imgs/logo.png">
+      <span class="font-weight-bold">华为商城</span>
+    </header>
+    <div class="msg">①依据《网络安全法》，为保障您的帐号安全与正常使用，请尽快绑定您的手机号，感谢您的理解及支持！</div>
+    <section>
+      <img src="http://127.0.0.1:3000/imgs/login-bg.png">
+      <div class="modal-container">
+        <div class="modal-body">
+          <h4 class="text-danger">账号登录</h4>
+          <form action="#" method="get">
+            <div class="mt-5">
+              <input type="text" placeholder="手机号/邮件地址/华为账号" v-model="uname">
+              <input type="password" placeholder="密码" v-model="upwd">
             </div>
+          </form>
+          <div class="mt-4"><input type="submit" value="登录" @click="login"></div>
+          <div class="text-left mt-3"><input type="checkbox">记住账号</div>
+          <div class="mt-2">
+            <span class="font-style mr-2"><a href="#" class="text-info">注册账号</a></span>
+            <span>|</span>
+            <span class="font-style ml-2"><a href="#" class="text-info">忘记密码?</a></span>
+          </div>
         </div>
-        
-</div>
-    <!-- <transition name="modal"> -->
-
-        
-    <!-- </transition> -->
-
+        <div class="modal-foot">
+          <span class="cont font-style">其他登录方式</span>
+          <div class="mt-4 icon justify-content-center">
+            <a href="javascript:;"><span class="iconfont icon-qq"></span></a>
+            <a href="javascript:;"><span class="iconfont icon-icon34"></span></a>
+            <a href="javascript:;"><span class="iconfont icon-weixin1"></span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
 </template>
 <script>
-    export default {
-      data(){
-        return {
-          showModal:false
+export default {
+  data(){
+    return{
+      uname:"",
+      upwd:"",
+    }
+  },
+  methods:{
+    login(){
+      var uname=this.uname;
+      var upwd=this.upwd;
+      this.axios.get("http://127.0.0.1:3000/login",{
+        params:{
+          uname,
+          upwd,
         }
-      },
-      methods: {
-        close(){
-          this.showModal=!this.showModal
-        },
-        loginShow(){
-          this.showModal=!this.showModal
-        }  
-      },
-
-    }
+      }).then(result=>{
+        if(result.data.code==1){
+          setTimeout(() => {
+            location.href="#/index";
+          },900);
+        }else{
+          alert("用户名或密码错误!请重新输入!");
+        }
+      })
+    },
+  }
+}
 </script>
-
 <style scoped>
-    .modal-bg{
-        position: fixed;
-        z-index:100;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, .5);
-        display:table;
-        /* transition: opacity .3s ease; */
-    }
-
-    .modal-wrapper {
-        display: table-cell;
-        vertical-align: middle;
-    }
-
-    .modal-container {
-        width:500px;
-        height:635px;
-        margin: 0px auto;
-        /* padding: 20px 30px; */
-        background-color: #fff;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
-        /* transition: all .3s ease;
-        font-family: Helvetica, Arial, sans-serif; */
-        position:relative;
-    }
-
-    .modal-header {
-      background-color:#a51b1b;
-      height:30px;
-    }
-    .modal-header span{
-      position:absolute;
-      top:3px;
-      right:10px;
-    }
-    .modal-body {
-        margin: 20px 0;
-    }
-
-    .modal-default-button {
-        float: right;
-    }
-
-    .modal-enter {
-        opacity: 0;
-    }
-
-    .modal-leave-active {
-        opacity: 0;
-    }
-
-
+  .login{
+    width:1920px;
+  }
+  header{
+    margin:20px;
+  }
+  header img{
+    width:140px;
+    height:40px;
+    margin:0 20px;
+  }
+  .msg{
+    background-color: #FFFBE4;
+    font-size:12px;
+    padding:15px;
+  }
+  section{
+    background-color:#081638;
+  }
+  section img{
+    height:590px;
+  }
+  .modal-container{
+    width:380px;
+    height:530px;
+    background:#fff;
+    position:absolute;
+    top:160px;
+    right:320px;
+  }
+  .modal-body input{
+    border:0;               
+    border-bottom:1px solid #ddd;
+  }
+  input[type='submit']{
+    background-color:#a51b1b;
+    border:0;
+    width:328px;
+    height:44px;
+    border-radius:30px;
+  }
+  .modal-foot{
+    margin-top:80px;
+  }
+  .modal-foot .cont:before,.modal-foot .cont::after{
+    content:"——————";
+    color:#a4a4a4;
+    padding:0 10px;
+  }
+  .modal-foot .icon .iconfont{
+    font-size:25px;
+  }
+  .cont{
+    font-size:12px;
+  }
+  .modal-foot .icon>a{
+    display:inline-block;
+    margin-right:10px;
+    width:42px;
+    height:42px;
+    background-color:#999;
+    line-height:42px;
+    border-radius:50%;
+    color:#fff;
+    text-decoration:none;
+  } 
+  .modal-foot .icon>a:nth-child(1):hover{
+    background-color:#2F98EA;
+  }
+  .modal-foot .icon>a:nth-child(2):hover{
+    background-color:#2F98EA;
+  }
+  .modal-foot .icon>a:nth-child(3):hover{
+    background-color:#21C121;
+  }
 </style>

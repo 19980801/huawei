@@ -20,13 +20,29 @@ Vue.config.productionTip = false
 axios.defaults.withCredentials=true;
 Vue.prototype.axios=axios;
 
- Vue.directive('anchor',{
+Vue.directive('anchor',{
   inserted : function(el,binding){
-  el.onclick = function(){
-      document.documentElement.scrollTop = $('#anchor-'+binding.value).offset().top
+    el.onclick = function(){
+     document.documentElement.scrollTop = $('#anchor-'+binding.value).offset().top
+    }
   }
+});
+Vue.directive('move',function(a){
+  a.onmousedown=function(e){
+    var clientX=e.clientX
+    var clientY=e.clientY
+    document.onmousemove=function(e){
+      var left=e.clientX-clientX;
+      var top=e.clientY-clientY;
+      a.style.left=left+'px';
+      a.style.top=top+'px';       
+    }
+    document.onmouseup=function(){
+      document.onmousemove=0;
+      document.onmousedown=0;
+    }
   }
-  })
+});
 
 new Vue({
   router,

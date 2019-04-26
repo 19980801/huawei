@@ -12,18 +12,21 @@ const pool=mysql.createPool({
 })
 // 创建express对象
 var server=express();
+
+// 绑定监听端口
+server.listen(3000,()=>{
+
+  console.log("服务器成功");
+});
+
+// 指定静态目录
+server.use(express.static("public"));
 // 配置cors跨域允许访问列表
 server.use(cors({
   origin:["http://127.0.0.1:8080","http://localhost:8080"],
   // 提高安全性，每次访问都会验证
   credentials:true
 }))
-
-// 绑定监听端口
-server.listen(3000);
-
-// 指定静态目录
-server.use(express.static("public"));
 
 // index首页轮播图图片
 server.get("/bannerlist",(req,res)=>{
@@ -49,5 +52,21 @@ server.get("/bannerlist",(req,res)=>{
   res.send({code:1,data:rows});
 });
 
-// 
+// 登录
+server.get("/login",(req,res)=>{
+  var uname=req.query.uname;
+  var upwd=req.query.upwd;
+  var sql="SELECT uid FROM hw_user WHERE uname=? AND upwd=md5(?)";
+  pool.query(sql,[uname,upwd],(err,result)=>{
+    if(err) throw err;
+     if(result.length>0){
+      res.send({code:1,msg:"登录成功"});
+     }else{
+    res.send({code:-1,msg:"登录失败"});
+     }
+  })
+});
+
+// 注册
+
 
