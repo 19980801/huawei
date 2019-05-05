@@ -1,7 +1,7 @@
 <template>
   <div class="app-index">
     <my-header></my-header>
-    <div>
+  <div>
     <div class="top-banner">
       <mt-swipe :auto="8000">
         <mt-swipe-item v-for="item of list" :key="item.id">
@@ -44,8 +44,8 @@
               <img src="http://127.0.0.1:3000/imgs/loger.png">
               <div class="left">
                 <p>您好!请
-                  <a href="javascript:;">登录</a>
-                  <a href="javascript:;">注册</a>
+                  <router-link to="login">登录</router-link>
+                  <router-link to="reg">注册</router-link>
                 </p>
                 <a href="javascript:;" class="a_border"><span class="font-style p-2">新人福利</span></a>
                 <a href="javascript:;" class="a_btn"><span class="font-style">会员频道</span></a>
@@ -578,7 +578,7 @@
           </div>           
          </a>
       </li>
-       <li>
+       <li @click="msgShow">
          <span class="iconfont icon-bianji"></span>
          <div class="msg">
            <span>意见反馈</span>
@@ -604,7 +604,34 @@
        <li @click="showDetails(7)"><a href="javascript:;">品牌配件</a></li>
      </ul>
    </div>
+   <!-- 意见框 -->
+    <div class="modal-bg" v-show="showModal">
+      <div class="modal-wrapper">
+        <div class="modal-container">
+          <span class="iconfont icon-guanbi2 float-right" @click="msgClose"></span>
+          <h4 class="text-danger pt-2">意见反馈</h4> 
+            <div class="modal-body">
+              <form action="#" method="get">
+                <select class="border" v-model="title">
+                  <option value="请选择疑问类型" selected>请选择疑问类型</option>
+                  <option value="商品质量(手机、平板等软/硬件质量)">商品质量(手机、平板等软/硬件质量)</option>
+                  <option value="商品缺货">商品缺货</option>
+                  <option value="物流发货(发货快慢、发错货、送件人态度等)">物流发货(发货快慢、发错货、送件人态度等)</option>
+                  <option value="售后服务(服务网点、维修、退换货、客服)">售后服务(服务网点、维修、退换货、客服)</option>
+                  <option value="网站问题(网站功能失效、不好用等)">网站问题(网站功能失效、不好用等)</option>
+                  <option value="其他问题">其他问题</option>
+                </select>
+                <p class="text-dark text-left">您的问题与建议</p>
+                <textarea rows="4" cols="20" placeholder="谢谢您的宝贵建议，我们将不断改进" v-model="content"></textarea>  
+                <p class="text-dark text-left">您的联系方式</p>
+                <input type="text" placeholder="选填邮箱或手机号码" v-model="msg">
+              </form>
+              <input type="submit" value="提交" @click="submit" required>
+            </div>
+        </div>
+      </div>
     </div>
+  </div>
     <my-footer></my-footer>
   </div>
 </template>
@@ -730,7 +757,7 @@
           {a_href:"javascript:;",title:"荣耀畅玩8C",content:"4GB+32GB到手价899",price:"899",img_url:"http://127.0.0.1:3000/imgs/f2.15.png"},
         ],
         floor3:[
-          {a_href:"javascript:;",title:"荣耀MagicBook 2019锐龙版",content:"订金100元抵400元 赠耳机",price:"4299",img_url:"http://127.0.0.1:3000/imgs/f3.2.png"},
+          {a_href:"/details?lid=1",title:"荣耀MagicBook 2019锐龙版",content:"订金100元抵400元 赠耳机",price:"4299",img_url:"http://127.0.0.1:3000/imgs/f3.2.png"},
           {a_href:"javascript:;",title:"HUAWEI MateBook E 2019款",content:"订金100抵200+赠蓝牙鼠标",price:"3999",img_url:"http://127.0.0.1:3000/imgs/f3.3.png"},
           {a_href:"javascript:;",title:"荣耀MagicBook",content:"最高直降300元 享6期免息",price:"4699",img_url:"http://127.0.0.1:3000/imgs/f3.4.png"},
           {a_href:"javascript:;",title:"HUAWEI MateBook D",content:"限量赠华为双肩包",price:"4988",img_url:"http://127.0.0.1:3000/imgs/f3.5.png"},
@@ -882,6 +909,11 @@
         // 记录ul已经左移的li的次数
         moved:0,
         showIndex:null,
+        // 意见框
+        showModal:false,
+        title:"",
+        content:"",
+        msg:""
       };
     },
     // 计算属性
@@ -983,6 +1015,29 @@
           window.scrollTo({"behavior":"smooth","top":el.offsetTop});
         })
       },
+      // 意见框
+      msgShow(){
+        this.showModal=!this.showModal;
+      },
+      msgClose(){
+        this.showModal=!this.showModal;
+      },
+      submit(){
+        var title=this.title;
+        var content=this.content;
+        var msg=this.msg;
+        this.axios.get("http://127.0.0.1:3000/msg",{
+          params:{
+            title,content,msg
+          }
+        }).then(result=>{
+          if(result.data.code==1){
+            this.msgClose();
+          }else{
+            alert("提交失败"+result.data.msg);
+          }
+        })
+      }
     },
     //2.将header.vue设置为当前组件的子组件
     components:{  
@@ -994,7 +1049,7 @@
 <style scoped>
   .app-index{
     background-color:#fff;
-    width:1920px;
+    width:100%;
   }
   .main a{
     text-decoration:none;
@@ -1010,6 +1065,7 @@
   /* 轮播样式 */
   .top-banner .mint-swipe{
     height:550px;
+    width:100%;
   }
   .banner{
     overflow:hidden;
@@ -1367,28 +1423,86 @@
    .show{
      display:block !important;
    }
-   /* 悬浮菜单 */
-    .float-list{
-     position:fixed;
-     right:10px;
-     top:500px;
-     width:100px;
-     color:#595454;
-     border-radius:5px;
-     display:none;
+   /*  */
+   @media screen and (min-width:992px){
+      /* 悬浮菜单 */
+      .float-list{
+      position:fixed;
+      right:10px;
+      top:350px;
+      width:100px;
+      color:#595454;
+      border-radius:5px;
+      display:none;
+    }
+    .float-list a{
+      text-decoration:none;
+      color:#595454;
+      font-size:14px;
+    }
+    .float-list li{
+      width:100px;
+      height:30px;
+      margin:4px;
+      line-height:30px;
+    }
+    .float-list li:hover{
+      background:#ddd;
+    }
    }
-   .float-list a{
-     text-decoration:none;
-     color:#595454;
-     font-size:14px;
+   @media screen and (min-width:768px) and (max-width:991px){
+     .float-list{
+       display:none;
+     }
    }
-  .float-list li{
-     width:100px;
-     height:30px;
-     margin:4px;
-     line-height:30px;
+   @media screen and (max-width:767px) and (min-width:426px){
+     .float-list{
+       display:none;
+     }
    }
-   .float-list li:hover{
-     background:#ddd;
-   }
+
+   /* 意见框 */
+  .modal-bg{
+    position:fixed;
+    z-index:9998;
+    top: 0;
+    left: 0;
+    width:100%;
+    height:100%;
+    background-color:rgba(0, 0, 0, .5);
+    display:table;
+  }
+  /* 居中 */
+  .modal-wrapper{
+    display:table-cell;
+    vertical-align: middle;
+  }
+  .modal-container{
+    width:600px;
+    height:430px;
+    margin: 0px auto;
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
+    position:relative;
+  }
+  .modal-header span{
+    position:absolute;
+    top:4px;
+    right:10px;
+  }
+  .modal-body{
+    margin:8px 30px;
+  }
+  input[type='submit']{
+    background-color:#a51b1b;
+    border:0;
+    width:100px;
+    height:44px;
+  }
+  textarea{
+    font-size:12px;
+  }
+  input[type=text]{
+    font-size:12px;
+  }
 </style>

@@ -68,5 +68,60 @@ server.get("/login",(req,res)=>{
 });
 
 // 注册
+server.get("/reg",(req,res)=>{
+  var uname=req.query.uname;
+  var upwd=req.query.upwd;
+  var upwd2=req.query.upwd2;
+  var phone=req.query.phone;
+  var city=req.query.city;
+  var sql="INSERT INTO hw_user VALUES(null,?,md5(?),md5(?),null,?,?)"
+  pool.query(sql,[uname,upwd,upwd2,phone,city],(err,result)=>{
+    if(err) throw err;
+    if(result.affectedRows>0){
+      res.send({code:1,msg:"注册成功!"});
+    }else{
+      res.send({code:-1,msg:"注册失败!"});
+    }
+  })
+});
+
+//意见
+server.get("/msg",(req,res)=>{
+  var title=req.query.title;
+  var content=req.query.content;
+  var msg=req.query.msg;
+  var sql="INSERT INTO hw_msg VALUES(null,?,?,?)";
+  if(!content){
+    res.send({code:-1,msg:"内容必须填写!"});
+    return;
+  }
+  if(!msg){
+    res.send({code:-1,msg:"联系方式必须填写!"});
+    return;
+  }
+  pool.query(sql,[title,content,msg],(err,result)=>{
+    if(err) throw err;
+    if(result.affectedRows>0){
+      res.send({code:1,msg:"提交成功!"});
+    }else{
+      res.send({code:-1,msg:"提交失败!"});
+    }
+  })
+});
+
+//商品详情使用路由器托管路由
+server.use("/details",details);
+server.get("/details",(req,res)=>{
+  var lid=req.query.lid;
+  var sql="SELECT * FROM hw_laptop WHERE lid=?";
+  pool.query(sql,[lid],(err,result)=>{
+    if(err) throw err;  
+    if(result.length>0){
+      res.send({code:1,msg:result});
+    }else{
+      res.send({code:-1,msg:"查询失败!"});
+    }
+  })
+});
 
 

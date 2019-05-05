@@ -2,7 +2,7 @@
   <header>
     <div v-show="show">
       <img src="http://127.0.0.1:3000/imgs/top.jpg" alt="top" class="img_top">
-      <img src="http://127.0.0.1:3000/imgs/close.png" class="close" @click="close">
+      <img src="http://127.0.0.1:3000/imgs/close2.png" class="close" @click="close">
     </div>
     <div class="top">
       <div class="container">
@@ -25,7 +25,9 @@
                 <li><a href="javascript:;" class="dropdown-item">开发者联盟</a></li>
               </ul>
             </li>
-          <li class="pl-2" @click="loginShow"><a href="javascript:;" class="font-style">请登录</a></li>
+          <li class="pl-2 dropdown" @click="loginShow">
+            <a class="font-style">请登录</a>
+          </li>
           <li class="breadcrumb-item pl-2"><a href="javascript:;" class="font-style">注册</a></li>
           <li class="breadcrumb-item"><a href="javascript:;" class="font-style">我的订单</a></li>
           <li class="breadcrumb-item dropdown">
@@ -164,44 +166,45 @@
           </li>          
         </ul>
       </div>
+      <!-- 搜索框 -->
       <div class="right ml-5">
-        <input type="text" class="search" v-model="kwords"> 
+        <input type="text" class="search" placeholder="输入需要搜索的内容"> 
         <span class="mui-icon mui-icon-search" @click="search"></span>
       </div>
     </section>
     <!-- 登录框 -->
     <div class="modal-bg" v-show="showModal">
-        <div class="modal-wrapper">
-            <div class="modal-container" v-move>
-              <div class="modal-header">
-                <span class="iconfont icon-guanbi2" @click="loginClose"></span>
+      <div class="modal-wrapper">
+        <div class="modal-container" v-move>
+          <div class="modal-header">
+            <span class="iconfont icon-guanbi2" @click="loginClose"></span>
+          </div>
+            <div class="modal-body">
+              <h4 class="text-danger">账号登录</h4>
+              <form action="#" method="get">
+                <div class="mt-5">
+                  <input type="text" placeholder="手机号/邮件地址/华为账号" v-model="uname">
+                  <input type="password" placeholder="密码" v-model="upwd">
+                </div>
+              </form>
+              <div class="mt-4"><input type="submit" value="登录" @click="login"></div>
+              <div class="text-left mt-3"><input type="checkbox">记住账号</div>
+              <div class="mt-2">
+                <span class="font-style mr-2"><a href="#" class="text-info">注册账号</a></span>
+                <span>|</span>
+                <span class="font-style ml-2"><a href="#" class="text-info">忘记密码?</a></span>
               </div>
-                <div class="modal-body">
-                  <h4 class="text-danger">账号登录</h4>
-                  <form action="#" method="get">
-                    <div class="mt-5">
-                      <input type="text" placeholder="手机号/邮件地址/华为账号" v-model="uname">
-                      <input type="password" placeholder="密码" v-model="upwd">
-                    </div>
-                  </form>
-                  <div class="mt-4"><input type="submit" value="登录" @click="login"></div>
-                  <div class="text-left mt-3"><input type="checkbox">记住账号</div>
-                  <div class="mt-2">
-                    <span class="font-style mr-2"><a href="#" class="text-info">注册账号</a></span>
-                    <span>|</span>
-                    <span class="font-style ml-2"><a href="#" class="text-info">忘记密码?</a></span>
-                  </div>
-                </div>
-                <div class="modal-foot">
-                  <span class="cont font-style">其他登录方式</span>
-                  <div class="mt-4 icon justify-content-center">
-                    <a href="javascript:;"><span class="iconfont icon-qq"></span></a>
-                    <a href="javascript:;"><span class="iconfont icon-icon34"></span></a>
-                    <a href="javascript:;"><span class="iconfont icon-weixin1"></span></a>
-                  </div>
-                </div>
+            </div>
+            <div class="modal-foot">
+              <span class="cont font-style">其他登录方式</span>
+              <div class="mt-4 icon justify-content-center">
+                <a href="javascript:;"><span class="iconfont icon-qq"></span></a>
+                <a href="javascript:;"><span class="iconfont icon-icon34"></span></a>
+                <a href="javascript:;"><span class="iconfont icon-weixin1"></span></a>
+              </div>
             </div>
         </div>
+      </div>
     </div>
   </header> 
 </template>
@@ -210,6 +213,7 @@
     data(){
       return{
         show:true,
+        // 搜索框
         kwords:"",
         showModal:false,
         // 登录
@@ -219,11 +223,13 @@
       }
     },
     created() {
+  
     },
     methods:{
       close(){
         this.show=false;
       },
+      // 搜索框
       search(){
         console.log(this.kwords);
       },
@@ -247,6 +253,8 @@
             setTimeout(() => {
               location.href="#/index";
             },900);
+            sessionStorage.setItem("uname",this.uname);
+            sessionStorage.setItem("num",this.num);
           }else{
             alert("用户名或密码错误!请重新输入!");
           }
@@ -267,16 +275,18 @@
   }
   header{
     background:#fff; 
-    width:1920px;
     margin:0 auto;
   }
   header .top{
     background-color:#f9f9f9;
   }
   header .close{
-    position: relative;
-    top:-75px;
-    right:340px;
+    position: absolute;
+    top:1rem;
+    right:15rem;
+  }
+  header .img_top{
+    width:100%;
   }
   .font-style{
     font-size:12px;
@@ -335,10 +345,14 @@
     border:0;
     border-radius:16px;
     height:30px;
+    width:280px;
     margin-top:15px;
     background:#f0f0f0;
     text-indent:15px;
     line-height:30px;
+  }
+  div.right input[type="text"]{
+    font-size:12px;
   }
   div.right span{
     position:absolute;

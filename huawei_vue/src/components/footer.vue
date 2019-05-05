@@ -209,7 +209,7 @@ export default {
 <style scoped>
   footer{
     background:#f9f9f9;
-    width:1920px;
+    width:100%;
     margin:0 auto;
   }
   footer a{

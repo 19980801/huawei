@@ -12,8 +12,8 @@
           <h4 class="text-danger">账号登录</h4>
           <form action="#" method="get">
             <div class="mt-5">
-              <input type="text" placeholder="手机号/邮件地址/华为账号" v-model="uname">
-              <input type="password" placeholder="密码" v-model="upwd">
+              <input type="text" placeholder="手机号/邮件地址/华为账号" v-model="uname" required>
+              <input type="password" placeholder="密码" v-model="upwd" required>
             </div>
           </form>
           <div class="mt-4"><input type="submit" value="登录" @click="login"></div>
@@ -68,7 +68,7 @@ export default {
 </script>
 <style scoped>
   .login{
-    width:1920px;
+    width:100%;
   }
   header{
     margin:20px;
@@ -94,8 +94,8 @@ export default {
     height:530px;
     background:#fff;
     position:absolute;
-    top:160px;
-    right:320px;
+    top:10rem;
+    right:20rem;
   }
   .modal-body input{
     border:0;               
