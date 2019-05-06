@@ -8,6 +8,7 @@ import Header from './components/header'
 import Footer from './components/footer'
 import products from './views/products'
 import details from './views/details'
+import detail from './views/detail'
 
 Vue.use(Router)
 
@@ -22,5 +23,6 @@ export default new Router({
     {path:"/footer", component:Footer},
     {path:'/products',component:products},
     {path:'/details',component:details},
+    {path:'/detail',component:detail},
   ]
 })

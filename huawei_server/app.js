@@ -15,7 +15,6 @@ var server=express();
 
 // 绑定监听端口
 server.listen(3000,()=>{
-
   console.log("服务器成功");
 });
 
@@ -110,18 +109,7 @@ server.get("/msg",(req,res)=>{
 });
 
 //商品详情使用路由器托管路由
+var details=require("./routers/details");
 server.use("/details",details);
-server.get("/details",(req,res)=>{
-  var lid=req.query.lid;
-  var sql="SELECT * FROM hw_laptop WHERE lid=?";
-  pool.query(sql,[lid],(err,result)=>{
-    if(err) throw err;  
-    if(result.length>0){
-      res.send({code:1,msg:result});
-    }else{
-      res.send({code:-1,msg:"查询失败!"});
-    }
-  })
-});
 
 
