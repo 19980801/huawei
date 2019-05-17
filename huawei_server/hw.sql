@@ -65,7 +65,7 @@ CREATE TABLE hw_laptop_family(
   fname VARCHAR(32)
 );
 
-#
+
 INSERT INTO hw_laptop_family VALUES
 (NULL,"手机"),
 (NULL,"笔记本电脑"),
@@ -74,6 +74,55 @@ INSERT INTO hw_laptop_family VALUES
 (NULL,"智能家居"),
 (NULL,"热销配件"),
 (NULL,"品牌配件");
+
+#用户评论表
+CREATE TABLE hw_comment(
+  cid INT PRIMARY KEY AUTO_INCREMENT,
+  uname VARCHAR(128),
+  content VARCHAR(256),
+  ctime VARCHAR(128),
+  point INT
+);
+
+INSERT INTO hw_comment VALUES
+(1,"蓝天白云","电脑真心不错，性价比高，一碰传和指纹非常好用","2019-05-16",100),
+(null,"1012547987","挺好的，没啥毛病，华为加油哦","2019-05-16",100),
+(null,"1012547987","用户未填写评价内容","2019-05-16",100),
+(null,"haiousaqufq","用户未填写评价内容","2019-05-16",86),
+(null,"fasufau","用户未填写评价内容","2019-05-16",75),
+(null,"foiausfas","用户未填写评价内容","2019-05-16",80),
+(null,"1fpoasuf","用户未填写评价内容","2019-05-16",100),
+(null,"pqwrrw","用户未填写评价内容","2019-05-16",100),
+(null,"1012547987","快快快，发货速度快，快递配送快，电脑反应快！非常满意的购物，晚上下单，早上收货！唯一遗憾，没买到3700U","2019-05-15",100),
+(null,"1012547987","十分强大，很好","2019-05-16",100),
+(null,"1012547987","满意的华为，太空银可以","2019-05-16",100),
+(null,"1012547987","开机速度快，上网速度也很快，待机时间长，充电速度快，充电时，看视频会有一点发热。送了一个包给我，感谢！！！电脑轻薄，放在包里很方便。","2019-05-16",100),
+(null,"1012547987","挺好的，没啥毛病","2019-05-10",100),
+(null,"1012547987","挺好的，没啥毛病","2019-05-01",100),
+(null,"1012547987","挺好的，没啥毛病","2019-05-12",95),
+(null,"1012547987","挺好的，没啥毛病","2019-05-01",85),
+(null,"1012547987","用户未填写评价内容","2019-05-06",75),
+(null,"1012547987","用户未填写评价内容","2019-04-28",90),
+(null,"1012547987","挺好的，没啥毛病","2019-04-27",100),
+(null,"1012547987","挺好的，没啥毛病","2019-04-15",100),
+(null,"1012547987","挺好的，没啥毛病","2019-04-15",100),
+(null,"1012547987","挺好的，没啥毛病","2019-04-15",100),
+(null,"1012547987","用户未填写评价内容","2019-04-15",100),
+(null,"1012547987","挺好的，没啥毛病","2019-04-15",100),
+(null,"1012547987","用户未填写评价内容","2019-04-15",100),
+(null,"1012547987","挺好的，没啥毛病","2019-04-15",100),
+(null,"1012547987","挺好的，没啥毛病","2019-04-15",100);
+
+#商品购物车
+CREATE TABLE hw_cart(
+  rid INT PRIMARY KEY AUTO_INCREMENT,
+  count INT,
+  price DECIMAL(15,2),
+  ctitle VARCHAR(256),
+  lid INT
+);
+
+
 
 INSERT INTO hw_laptop VALUES
 (1,1,'Apple MacBook Air 13.3英寸笔记本 银色(Core i5 处理器/8GB内存/128GB SSD闪存 MMGF2CH/A)','5月焕新季，领券买新机！神券满6000减600！一体成型金属机身，纤薄轻巧，长达12小时续航',6988,'*退货补运费 *30天无忧退货 *48小时快速退款 *72小时发货','双核i5/8GB内存/128GB闪存','AppleMacBook Air','MacOS','8G','1920*1080','集成显卡','Intel i5低功耗版','其它','轻薄本','128G固态','<div class="content_tpl"> <div class="formwork">   <div class="formwork_img"><br></div><div class="formwork_img">    <img alt="" class="" src="img/product/detail/57b15612N81dc489d.jpg">   </div>  </div>  <div class="formwork">   <div class="formwork_img">    <img alt="" class="" src="//img20.360buyimg.com/vc/jfs/t2683/60/4222930118/169462/233c7678/57b15616N1e285f09.jpg">   </div>  </div>  <div class="formwork">   <div class="formwork_text">    技术规格请前往 www.apple.com/cn/macbook-air/specs.html 查看完整内容。</div></div></div>',150123456789,2968,true),
@@ -418,3 +467,4 @@ INSERT INTO hw_laptop_pic VALUES
 (NULL, 43, 'img/product/sm/58a2c669N4f92f8cb.jpg','img/product/md/58a2c669N4f92f8cb.jpg','img/product/lg/58a2c669N4f92f8cb.jpg'),
 (NULL, 43, 'img/product/sm/58a2c668N0be41fb0.jpg','img/product/md/58a2c668N0be41fb0.jpg','img/product/lg/58a2c668N0be41fb0.jpg'),
 (NULL, 43, 'img/product/sm/58a2c66aNcd10ee32.jpg','img/product/md/58a2c66aNcd10ee32.jpg','img/product/lg/58a2c66aNcd10ee32.jpg');
+

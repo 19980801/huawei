@@ -25,10 +25,11 @@
                 <li><a href="javascript:;" class="dropdown-item">开发者联盟</a></li>
               </ul>
             </li>
-          <li class="pl-2 dropdown" @click="loginShow">
+          <li class="pl-2 dropdown" @click="loginShow" v-show="!islogin">
             <a class="font-style">请登录</a>
           </li>
-          <li class="breadcrumb-item pl-2"><a href="javascript:;" class="font-style">注册</a></li>
+          <li class="breadcrumb-item pl-2 pr-2"><a href="javascript:;" class="font-style" v-show="!islogin">注册</a></li>
+          <li v-show="islogin" class="pr-1">{{uname}}<a href="javascript:;" class="font-style pl-2 text-danger" @click="exit">退出</a></li>
           <li class="breadcrumb-item"><a href="javascript:;" class="font-style">我的订单</a></li>
           <li class="breadcrumb-item dropdown">
             <a href="javascript:;" class="font-style">客户服务
@@ -168,7 +169,7 @@
       </div>
       <!-- 搜索框 -->
       <div class="right ml-5">
-        <input type="text" class="search" placeholder="输入需要搜索的内容"> 
+        <input type="text" class="search" placeholder="输入需要搜索的内容" v-model="key" @keyup.13="search" v-focus> 
         <span class="mui-icon mui-icon-search" @click="search"></span>
       </div>
     </section>
@@ -213,17 +214,26 @@
     data(){
       return{
         show:true,
-        // 搜索框
-        kwords:"",
+        // 搜索框关键词
+        key:"",
         showModal:false,
         // 登录
         uname:"",                                         
         upwd:"",
         num:1,
+        islogin:false
+      }
+    },
+    // 自动获取焦点
+    directives:{
+      focus:{
+        inserted:function(el){
+          el.focus();
+        }
       }
     },
     created() {
-  
+      this.key=this.$route.params.key;
     },
     methods:{
       close(){
@@ -231,7 +241,17 @@
       },
       // 搜索框
       search(){
-        console.log(this.kwords);
+        var key=this.key;
+        if(!key){
+          this.alert("请输入搜索内容!");
+          return;
+        }
+        if(this.key.trim()!==""){
+          this.$router.push(`/products/${this.key}`);
+        }
+        if(this.$route.path.split("/")[1]=="products"){
+          location.reload();
+        }
       },
       loginShow(){
         this.showModal=!this.showModal;
@@ -250,6 +270,7 @@
         }).then(result=>{
           if(result.data.code==1){
             this.loginClose();
+            this.islogin=true;
             setTimeout(() => {
               location.href="#/index";
             },900);
@@ -260,6 +281,11 @@
           }
         })
       },
+      exit(){
+        alert("已退出")
+        sessionStorage.removeItem("uname");
+        this.islogin=false;
+      }
     },
     watch: {
       kwords(){

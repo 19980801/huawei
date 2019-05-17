@@ -55,6 +55,7 @@ export default {
         }
       }).then(result=>{
         if(result.data.code==1){
+          sessionStorage.setItem("uname",this.uname);
           setTimeout(() => {
             location.href="#/index";
           },900);

@@ -257,7 +257,7 @@ export default {
         var upwd2=this.upwd;
         var city=this.city;
         var email=this.email;
-        this.axios.post("http://127.0.0.1:3000/reg",{
+        this.axios.get("http://127.0.0.1:3000/reg",{
           params:{
             uname,phone,upwd,upwd2,city,email
           }

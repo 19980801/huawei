@@ -43,9 +43,12 @@
             <div class="nav-link d-flex">
               <img src="http://127.0.0.1:3000/imgs/loger.png">
               <div class="left">
-                <p>您好!请
+                <p v-show="!islogin">您好!请
                   <router-link to="login">登录</router-link>
                   <router-link to="reg">注册</router-link>
+                </p>
+                <p v-show="islogin">
+                  欢迎{{uname}}
                 </p>
                 <a href="javascript:;" class="a_border"><span class="font-style p-2">新人福利</span></a>
                 <a href="javascript:;" class="a_btn"><span class="font-style">会员频道</span></a>
@@ -563,12 +566,12 @@
    <div class="tool">
      <ul class="float-tool list-unstyled">
        <li>
-         <a href="javascript:;">
+         <router-link to="shopcart">
           <span class="iconfont icon-cart-normal"></span>
           <div class="shop-msg">
             <span>购物车</span>
           </div>           
-         </a>
+         </router-link>
       </li>
        <li>
          <a href="javascript:;">
@@ -649,6 +652,8 @@
     },
     data(){
       return {
+        islogin:false,
+        uname:"",
         // 轮播
         list:[],
         list1:[],
@@ -757,15 +762,15 @@
           {a_href:"javascript:;",title:"荣耀畅玩8C",content:"4GB+32GB到手价899",price:"899",img_url:"http://127.0.0.1:3000/imgs/f2.15.png"},
         ],
         floor3:[
-          {a_href:"/details?lid=1",title:"荣耀MagicBook 2019锐龙版",content:"订金100元抵400元 赠耳机",price:"4299",img_url:"http://127.0.0.1:3000/imgs/f3.2.png"},
-          {a_href:"javascript:;",title:"HUAWEI MateBook E 2019款",content:"订金100抵200+赠蓝牙鼠标",price:"3999",img_url:"http://127.0.0.1:3000/imgs/f3.3.png"},
-          {a_href:"javascript:;",title:"荣耀MagicBook",content:"最高直降300元 享6期免息",price:"4699",img_url:"http://127.0.0.1:3000/imgs/f3.4.png"},
-          {a_href:"javascript:;",title:"HUAWEI MateBook D",content:"限量赠华为双肩包",price:"4988",img_url:"http://127.0.0.1:3000/imgs/f3.5.png"},
-          {a_href:"javascript:;",title:"HUAWEI MateBook 13",content:"稀缺货源 限量发售",price:"5699",img_url:"http://127.0.0.1:3000/imgs/f3.6.png"},
-          {a_href:"javascript:;",title:"荣耀MagicBook 星云紫",content:"高颜值时尚轻薄本",price:"5699",img_url:"http://127.0.0.1:3000/imgs/f3.7.png"},
-          {a_href:"javascript:;",title:"HUAWEI MateBook 14",content:"优享购免登记",price:"5699",img_url:"http://127.0.0.1:3000/imgs/f3.8.png"},
-          {a_href:"javascript:;",title:"荣耀MagicBook 触控版",content:"touch触控 随心而动",price:"5699",img_url:"http://127.0.0.1:3000/imgs/f3.9.png"},
-          {a_href:"javascript:;",title:"HUAWEI MateBook E",content:"限量赠配件礼包",price:"4288",img_url:"http://127.0.0.1:3000/imgs/f3.10.png"},
+          {a_href:"#/details/1",title:"荣耀MagicBook 2019锐龙版",content:"订金100元抵400元 赠耳机",price:"4299",img_url:"http://127.0.0.1:3000/imgs/f3.2.png"},
+          {a_href:"#/details/9",title:"HUAWEI MateBook E 2019款",content:"订金100抵200+赠蓝牙鼠标",price:"3999",img_url:"http://127.0.0.1:3000/imgs/f3.3.png"},
+          {a_href:"#/details/2",title:"荣耀MagicBook",content:"最高直降300元 享6期免息",price:"4699",img_url:"http://127.0.0.1:3000/imgs/f3.4.png"},
+          {a_href:"#/details/3",title:"HUAWEI MateBook D",content:"限量赠华为双肩包",price:"4988",img_url:"http://127.0.0.1:3000/imgs/f3.5.png"},
+          {a_href:"#/details/4",title:"HUAWEI MateBook 13",content:"稀缺货源 限量发售",price:"5699",img_url:"http://127.0.0.1:3000/imgs/f3.6.png"},
+          {a_href:"#/details/5",title:"荣耀MagicBook 星云紫",content:"高颜值时尚轻薄本",price:"5699",img_url:"http://127.0.0.1:3000/imgs/f3.7.png"},
+          {a_href:"#/details/6",title:"HUAWEI MateBook 14",content:"优享购免登记",price:"5699",img_url:"http://127.0.0.1:3000/imgs/f3.8.png"},
+          {a_href:"#/details/7",title:"荣耀MagicBook 触控版",content:"touch触控 随心而动",price:"5699",img_url:"http://127.0.0.1:3000/imgs/f3.9.png"},
+          {a_href:"#/details/8",title:"HUAWEI MateBook E",content:"限量赠配件礼包",price:"4288",img_url:"http://127.0.0.1:3000/imgs/f3.10.png"},
         ],
         floor4:[
           {a_href:"javascript:;",title:"荣耀平板5 10.1英寸",content:"最高直降200元",price:"1199",img_url:"http://127.0.0.1:3000/imgs/f4.2.png"},
@@ -819,8 +824,8 @@
           {a_href:"javascript:;",title:"华为40W超级快充移动电源",content:"双向40W超级快充",price:"369",img_url:"http://127.0.0.1:3000/imgs/f8.9.png"},
         ],
         scroll1:[
-          {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list1.png",content:"新品首发 限时直降300元",title:"荣耀MagicBook 2019瑞龙版",price:"3999"},
-          {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list2.png",content:"稀缺货源+享6期免息",title:"HUAWEI MateBook X Pro 2019款",price:"7999"},
+          {a_href:"#/details/2",img_url:"http://127.0.0.1:3000/imgs/list1.png",content:"新品首发 限时直降300元",title:"荣耀MagicBook 2019瑞龙版",price:"3999"},
+          {a_href:"#/details/10",img_url:"http://127.0.0.1:3000/imgs/list2.png",content:"稀缺货源+享6期免息",title:"HUAWEI MateBook X Pro 2019款",price:"7999"},
           {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list3.png",content:"订金9抵109",title:"【订金】荣耀手表梦幻系列",price:"999"},
           {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list4.png",content:"订金50抵150",title:"HUAWEI WATCH GT 雅致款",price:"1388"},
           {a_href:"javascript:;",img_url:"http://127.0.0.1:3000/imgs/list5.png",content:"最高直降200元",title:"荣耀平板5 10.1英寸",price:"1199"},

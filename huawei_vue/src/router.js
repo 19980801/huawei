@@ -8,7 +8,8 @@ import Header from './components/header'
 import Footer from './components/footer'
 import products from './views/products'
 import details from './views/details'
-import detail from './views/detail'
+import shopcart from './views/shopcart'
+import pay from './views/pay'
 
 Vue.use(Router)
 
@@ -21,8 +22,9 @@ export default new Router({
     {path:"/login", component:Login},
     {path:"/header", component:Header},
     {path:"/footer", component:Footer},
-    {path:'/products',component:products},
-    {path:'/details',component:details},
-    {path:'/detail',component:detail},
+    {path:'/products/:key',component:products,props:true},
+    {path:'/details/:lid',component:details,props:true},
+    {path:'/shopcart',component:shopcart},
+    {path:'/pay',component:pay},
   ]
 })

@@ -205,7 +205,6 @@ export default {
   },
 }
 </script>
-
 <style scoped>
   footer{
     background:#f9f9f9;
